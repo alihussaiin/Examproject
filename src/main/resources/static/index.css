@@ -9,6 +9,13 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: #f9f9f9; /* Tilføj baggrundsfarve til hele siden */
+    background-image: url('https://www.publichealthnotes.com/wp-content/uploads/2020/03/project-planning-header@2x.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Holder baggrundsbilledet fast, så det ikke ruller med indholdet */
+    background-color: rgba(255, 255, 255, 0.8); /* Gennemsigtig hvid baggrund */
+    opacity: 0.80; /* Juster gennemsigtigheden af baggrundsbilledet */
 }
 
 .container {
@@ -18,9 +25,12 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: cornflowerblue;
     color: #fff;
     padding: 20px 0;
+    display: flex; /* Gør header flex-container */
+    justify-content: space-between; /* Placer elementerne i header til venstre og højre */
+    align-items: center; /* Centrer elementerne vertikalt */
 }
 
 header h1 {
@@ -39,6 +49,10 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
+}
+
+.login-button {
+    margin-left: auto; /* Placer til højre ved at bruge auto-margin */
 }
 
 .hero {
@@ -68,4 +82,56 @@ nav ul li a {
 
 .btn-primary {
     background-color: #007bff;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.hero-section img {
+    opacity: 0.8;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Tilføjet styling til section.features */
+.features {
+    background-color: #fff; /* Baggrundsfarve */
+    padding: 50px 0; /* Indvendig polstring */
+    text-align: center; /* Centreret tekst */
+}
+
+.features h2 {
+    margin-bottom: 20px; /* Afstand under overskrift */
+}
+
+.features ul {
+    list-style-type: none; /* Fjern punktopstilling */
+}
+
+.features li {
+    font-size: 18px; /* Størrelse på tekst */
+    margin-bottom: 10px; /* Afstand mellem hvert element */
+}
+
+/* Tilføjet styling til section.how-it-works */
+.how-it-works {
+    background-color: #f9f9f9; /* Baggrundsfarve */
+    padding: 50px 0; /* Indvendig polstring */
+    text-align: center; /* Centreret tekst */
+}
+
+.how-it-works h2 {
+    margin-bottom: 20px; /* Afstand under overskrift */
+}
+
+.how-it-works p {
+    font-size: 16px; /* Størrelse på tekst */
+    line-height: 1.6; /* Linjeafstand */
 }

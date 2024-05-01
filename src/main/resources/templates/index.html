@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +7,41 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
 <header>
     <div class="container">
         <h1>Project Manager</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Tasks</a></li>
-                <li><a href="#">Teams</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
     </div>
+    <nav>
+        <ul>
+            <li class="login-button"><a href="#" th:href="@{/home}">Login</a></li>
+        </ul>
+    </nav>
 </header>
 
-<section class="hero">
+<section class="hero hero-section">
     <div class="container">
         <h2>Welcome to Project Manager</h2>
         <p>A powerful tool for managing your projects efficiently.</p>
         <a href="#" class="btn btn-primary">Get Started</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Project Creation</li>
+            <li>Task Management</li>
+            <li>Team Collaboration</li>
+        </ul>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="container">
+        <h2>How It Works</h2>
+        <p>Project Manager simplifies project management by providing intuitive tools for creating projects, assigning tasks and collaborating with team members.</p>
     </div>
 </section>
 
@@ -35,5 +50,6 @@
         <p>&copy; 2024 Project Manager. All rights reserved.</p>
     </div>
 </footer>
+
 </body>
 </html>
