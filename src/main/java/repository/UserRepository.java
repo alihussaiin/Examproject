@@ -1,4 +1,5 @@
 package repository;
+
 import model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
