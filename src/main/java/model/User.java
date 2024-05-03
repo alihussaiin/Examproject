@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class User {
     private String firstname;
-    private  String username;
+    private String username;
     private String password;
-    private  int user_id;
+    private int user_id;
 
     public User(String firstname, String username, String password, int user_id) {
         this.firstname = firstname;
