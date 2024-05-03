@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opret bruger</title>
+    <link rel="stylesheet" href="/register.css">
 </head>
 <body>
+<div class="register-container">
+    <h1>Register</h1>
+    <form action="/register" method="post" th:object="${user}" class="form">
 
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:value="${firstName}" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" th:value="${username}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" th:value="${password}" required>
+        </div>
+        <div class="form-group">
+            <input hidden="hidden" id="user_id" name="user_id" th:value="${user_id}" required>
+        </div>
+
+        <div class="form-group">
+            <a th:href="@{'/login'}" class="btn-register">Register</a>
+            <a th:href="@{/home}" class="btn-cancel">Tilbage</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>
