@@ -5,13 +5,13 @@ public class User {
     private String firstname;
     private String username;
     private String password;
-    private int users_id;
+    private int id;
 
     public User(String firstname, String username, String password, int users_id) {
         this.firstname = firstname;
         this.username = username;
         this.password = password;
-        this.users_id = users_id;
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -44,20 +44,20 @@ public class User {
         this.password = password;
     }
 
-    public int getUsers_id() {
+    public int getid() {
 
-        return users_id;
+        return id;
     }
 
-    public void setUsers_id(int users_id) {
+    public void setid(int id) {
 
-        this.users_id = users_id;
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                ", users_id='" + users_id + '\'' +
+                ", id='" + id + '\'' +
                 ", userPassword='" + password + '\'' +
                 '}';
     }
