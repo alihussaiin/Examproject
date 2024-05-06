@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +9,20 @@
 <body>
 <div class="container mt-5">
     <h2>Registration Form</h2>
-    <form action="/users/register" method="post">
+    <!-- `th:action="@{/users/register}"` will ensure that the form submits to the correct URL -->
+    <form th:action="@{/users/register}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" required>
+            <!-- `th:field="*{firstname}"` binds the input to the firstname field in the User object -->
+            <input type="text" class="form-control" id="firstname" th:field="*{firstname}" placeholder="Enter your first name" required>
         </div>
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" required>
+            <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Choose a username" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Create a password" required>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
