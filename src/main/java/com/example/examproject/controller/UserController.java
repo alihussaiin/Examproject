@@ -35,7 +35,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(Model model, User user) {
-        /*model.addAttribute("user", userService.registerUser(user));*/
+        model.addAttribute("user", userService.registerUser(user));
         userService.registerUser(user); // Kalder metoden i UserService for at registrere brugeren
         return "redirect:/login"; // Omdiriger brugeren til login-siden efter registrering
     }
