@@ -1,6 +1,7 @@
 package com.example.examproject.controller;
 
 import com.example.examproject.model.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+
 public class UserController {
     private final UserService userService;
 
@@ -28,7 +30,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/register")
+        @GetMapping("/register")
     public String showRegistrationForm(Model model) { //KLAR
         model.addAttribute("userObject", new User());
         return "register";
@@ -36,10 +38,40 @@ public class UserController {
 
     @PostMapping("/users/register")
     public String registerUser(@ModelAttribute User user) {
-       // model.addAttribute("userObject", userService.registerUser(user));
         userService.registerUser(user); // Kalder metoden i UserService for at registrere brugeren
         return "redirect:/login"; // Omdiriger brugeren til login-siden efter registrering
     }
 
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
+        // Kontroller, om brugeren findes i databasen
+        User existingUser = userService.findById(user.getid());
+        if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
+            // Brugeren er fundet i databasen og adgangskoden matcher
+            // Gem brugeren i sessionen i 30 sekunder
+            session.setAttribute("loggedInUser", existingUser);
+            session.setMaxInactiveInterval(30); // 30 sekunders sessionstid
+            return "redirect:/project_frontpage"; // Omdiriger brugeren til forsiden
+        } else {
+            // Brugeren blev ikke fundet i databasen eller adgangskoden er forkert
+            model.addAttribute("error", "Invalid username or password");
+            return "login"; // Tilbage til loginside med fejlmeddelelse
+        }
+    }
+
+
+
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Udløs sessionen for at logge brugeren ud
+        return "redirect:/login"; // Omdiriger brugeren til login-siden
+    }
 }
 

@@ -9,11 +9,9 @@
 <body>
 <div class="container mt-5">
     <h2>Registration Form</h2>
-    <!-- `th:action="@{/users/register}"` will ensure that the form submits to the correct URL -->
     <form th:action="@{/users/register}" th:object="${userObject}" method="post">
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <!-- `th:field="*{firstname}"` binds the input to the firstname field in the User object -->
             <input type="text" class="form-control" id="firstname" th:field="*{firstname}" placeholder="Enter your first name" required>
         </div>
         <div class="form-group">
@@ -24,10 +22,11 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Create a password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <a href="/" class="btn btn-primary">Cancel</a>
+        </div>
     </form>
 </div>
-
-
 </body>
 </html>

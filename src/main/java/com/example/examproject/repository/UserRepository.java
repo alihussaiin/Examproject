@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import com.example.examproject.util.ConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 @Repository
@@ -19,7 +17,7 @@ public class UserRepository {
     @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("@H0wtomakemoney")
+    @Value("Kwc52vap2qc#")
     private String password;
 
 
@@ -39,4 +37,27 @@ public class UserRepository {
         }
         return user;
     }
-}
+
+    public User findById(int id) {
+            try (Connection con = DriverManager.getConnection(dbUrl, username, password)) {
+                String sql = "SELECT * FROM users WHERE id = ?";
+                try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+                    pstmt.setInt(1, id);
+                    try (ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            return new User(
+                                    rs.getString("FIRSTNAME"),
+                                    rs.getString("USERNAME"),
+                                    rs.getString("PASSWORD"),
+                                    rs.getInt("ID")
+                            );
+                        }
+                    }
+                }
+                return null;   // Returner null, hvis brugeren ikke findes
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
