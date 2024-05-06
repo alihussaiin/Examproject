@@ -1,15 +1,13 @@
-package controller;
+package com.example.examproject.controller;
 
-import model.User;
+import com.example.examproject.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.example.examproject.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import service.UserService;
 
 @Controller
-@RequestMapping(path = "")
 public class UserController {
     private final UserService userService;
 
@@ -22,7 +20,7 @@ public class UserController {
 
     private User user;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String home() {
         // Tilføj eventuelle data til model, som skal vises i visningen
         return "index";
@@ -37,9 +35,10 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(Model model, User user) {
-        model.addAttribute("user", userService.registerUser(user));
+        /*model.addAttribute("user", userService.registerUser(user));*/
         userService.registerUser(user); // Kalder metoden i UserService for at registrere brugeren
         return "redirect:/login"; // Omdiriger brugeren til login-siden efter registrering
     }
+
 }
 

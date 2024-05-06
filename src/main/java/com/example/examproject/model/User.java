@@ -1,4 +1,4 @@
-package model;
+package com.example.examproject.model;
 
 
 public class User {
@@ -7,7 +7,7 @@ public class User {
     private String password;
     private int id;
 
-    public User(String firstname, String username, String password, int users_id) {
+    public User(String firstname, String username, String password, int id) {
         this.firstname = firstname;
         this.username = username;
         this.password = password;

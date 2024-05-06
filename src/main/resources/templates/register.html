@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opret bruger</title>
-    <link rel="stylesheet" href="/register.css">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="register-container">
-    <h1>Register</h1>
-    <form action="/register" method="post" th:object="${user}" class="form">
+<div class="container mt-5">
+    <h2>Registration Form</h2>
+    <form action="/users/register" method="post">
         <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" th:field="*{firstname}" required>
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" required>
         </div>
         <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" th:field="*{username}" required>
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" required>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" th:field="*{password}" required>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
         </div>
-        <div class="form-group">
-            <input type="hidden" id="id" name="id" th:value="${user.id}" required>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn-register">Register</button>
-            <a href="/home" class="btn-cancel">Cancel</a>
-        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
