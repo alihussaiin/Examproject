@@ -19,23 +19,24 @@ public class UserRepository {
     @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${spring.datasource.password}")
+    @Value("@H0wtomakemoney")
     private String password;
 
 
-    public User registerUser(User newUser) {
+    public User registerUser(User user) {
         try (Connection conn = ConnectionManager.getConnection(dbUrl, username, password)) {
-            String SQL = "INSERT INTO users (FIRSTNAME, USERNAME, PASSWORD, ID) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO users (ID, FIRST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-                ps.setString(1, newUser.getFirstname());
-                ps.setString(2, newUser.getUsername());
-                ps.setString(3, newUser.getPassword());
-                ps.setInt(4, newUser.getid()); // Sætter ID-værdien
+                ps.setInt(1, user.getid());
+                ps.setString(2, user.getFirstname());
+                ps.setString(3, user.getUsername());
+                ps.setString(4, user.getPassword()); // Sætter ID-værdien
+
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return newUser;
+        return user;
     }
 }
