@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="register.css">
 </head>
 <body>
 <div class="container mt-5">
     <h2>Registration Form</h2>
     <!-- `th:action="@{/users/register}"` will ensure that the form submits to the correct URL -->
-    <form th:action="@{/users/register}" th:object="${user}" method="post">
+    <form th:action="@{/users/register}" th:object="${userObject}" method="post">
         <div class="form-group">
             <label for="firstname">First Name</label>
             <!-- `th:field="*{firstname}"` binds the input to the firstname field in the User object -->
@@ -27,6 +27,7 @@
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
+
 
 </body>
 </html>
