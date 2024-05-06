@@ -1,8 +1,9 @@
-package repository;
-import model.User;
+package com.example.examproject.repository;
+
+import com.example.examproject.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import util.ConnectionManager;
+import com.example.examproject.util.ConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

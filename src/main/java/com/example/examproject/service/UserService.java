@@ -1,7 +1,7 @@
-package service;
-import model.User;
+package com.example.examproject.service;
+import com.example.examproject.model.User;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import com.example.examproject.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -11,8 +11,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void registerUser(User user) {
-        userRepository.registerUser(user);
+    public User registerUser(User user) {
+        return userRepository.registerUser(user);
     }
 
 }
