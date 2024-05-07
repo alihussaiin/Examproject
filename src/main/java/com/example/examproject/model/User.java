@@ -4,10 +4,10 @@ package com.example.examproject.model;
 public class User {
     private String firstname;
     private String username;
-    private String password;
+    private Integer password;
     private int id;
 
-    public User(String firstname, String username, String password, int id) {
+    public User(String firstname, String username, Integer password, int id) {
         this.firstname = firstname;
         this.username = username;
         this.password = password;
@@ -37,12 +37,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
+    public Integer getPassword() {
 
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(Integer password) {
 
         this.password = password;
     }
@@ -61,6 +61,8 @@ public class User {
     public String toString() {
         return "User{" +
                 ", id='" + id + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", username='" + username + '\'' +
                 ", userPassword='" + password + '\'' +
                 '}';
     }
