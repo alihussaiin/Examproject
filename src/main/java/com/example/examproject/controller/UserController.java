@@ -54,9 +54,9 @@ public class UserController {
         User validatedUser = userService.findbyUsername(user.getUsername());
         System.out.println("validatedUser = " + validatedUser);
 
-        if (validatedUser != null) {
+        if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
             // Brugeren er fundet i databasen og adgangskoden matcher
-            // Gem brugeren i sessionen i 30 sekunder
+            // Gem brugeren i sessionen i 1800 sekunder
             session.setAttribute("loggedInUser", validatedUser);
             session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
             return "redirect:/project_frontpage"; // Omdiriger brugeren til forsiden
@@ -75,5 +75,12 @@ public class UserController {
         session.invalidate(); // Udløs sessionen for at logge brugeren ud
         return "redirect:/login"; // Omdiriger brugeren til login-siden
     }
+
+    @GetMapping("/project_frontpage")
+    public String showProjectFrontPage(Model model) {
+        // Her kan du tilføje eventuelle data, du vil vise på projektets forside
+        return "project_frontpage"; // Returner navnet på HTML-siden for projektets forside
+    }
+
 }
 
