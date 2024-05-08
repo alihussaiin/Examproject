@@ -10,13 +10,13 @@ import java.sql.*;
 @Repository
 public class UserRepository {
 
-    @Value("${spring.datasource.url}")
+    @Value("jdbc:mysql://localhost:3306/projectmanager_db")
     private String dbUrl;
 
-    @Value("${spring.datasource.username}")
+    @Value("root")
     private String dbUsername;
 
-    @Value("Kwc52vap2qc#")
+    @Value("@H0wtomakemoney")
     private String dbPassword;
 
 

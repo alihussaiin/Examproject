@@ -21,21 +21,21 @@ public class ProjectController {
     }
 
     //opret projekt og går hen til stien createProject
-    @GetMapping("createProject")
+    @GetMapping("/create_project")
     public String createProjectform(Model model) {
         model.addAttribute("project", new Project());
-        return "createProject";
+        return "create_project";
     }
 
     //modtager datainput fra brugeren og sender dataen til databasen
-    @PostMapping("createProject")
+    @PostMapping("/create_project")
     public String createProject(@ModelAttribute Project project) {
         projectService.createProject(project);
         return "redirect:/project_frontpage";
     }
 
     // Opret en side for visning af alle projekter
-    @GetMapping("getAllProjects")
+    @GetMapping("/projects")
     public String getAllProjects(Model model) {
         ArrayList<Project> projects = projectService.getAllProjects();
         model.addAttribute("projects", projects);
