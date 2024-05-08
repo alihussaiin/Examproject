@@ -2,9 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt Frontpage</title>
+    <link rel="stylesheet" href="project_frontpage.css">
 </head>
 <body>
+<div class="container">
+    <h1>Project Frontpage</h1>
 
+    <!-- Knappen til at tilføje et ny projekt -->
+    <div class="button-group">
+        <a th:href="@{/createproject}" class="add btn">Opret projekt</a>
+    </div>
+
+    <!-- Tabel til visning af projekter -->
+    <table>
+        <thead>
+        <tr>
+            <th>Projekt ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Rediger</th>
+            <th>Slet</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Her kan du indsætte dynamisk genereret HTML for hver projekt -->
+        <!-- For eksempel: -->
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <form action="/redigerproject" method="post">
+                    <button class="delete" type="submit">Rediger</button>
+            </td>
+            <td>
+                <form action="/deleteproject" method="post">
+                    <button class="delete" type="submit">Slet</button>
+                </form>
+            </td>
+        </tr>
+        <!-- Gentag dette mønster for hver projekt -->
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

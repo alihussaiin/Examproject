@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-<div class="login-container">
+<div class="container mt-5">
     <h2>Login</h2>
-    <form action="#" th:action="@{/login}" method="post">
+    <form action="/login" method="post">
         <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
         </div>
-        <div class="form-group">
-            <a th:href="@{/wishlist_frontpage}" type="submit" class="btn-register">Login</a>
-            <a th:href="@{/home}" class="btn-cancel">Tilbage</a>
-        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+    <a href="/" class="btn btn-secondary">Back</a>
 </div>
 </body>
 </html>

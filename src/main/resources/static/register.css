@@ -1,64 +1,83 @@
-/* Reset CSS */
-* {
+/* Reset styles */
+body, h2, label {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Global Styles */
 body {
+    background-color: #f8f9fa;
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
 }
 
-.register-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.container {
+    max-width: 500px;
+    margin: auto;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 
-.register-container h1 {
-    margin-bottom: 20px;
+h2 {
     text-align: center;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="password"] {
+.btn-primary {
     width: 100%;
+    display: block;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
-}
-
-.btn-register,
-.btn-cancel {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
     text-decoration: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.btn-register {
-    background-color: green;
-    color: white;
-    margin-right: 10px;
+.btn-primary:hover {
+    background-color: #0056b3;
 }
 
 .btn-cancel {
-    background-color: yellow;
-    color: black;
+    width: 100%;
+    display: block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6c757d;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+.button-group {
+    display: flex;
+}
+
+.button-group .btn {
+    flex: 1;
+    margin-left: 5px;
+}
+
+.button-group .btn:last-child {
+    margin-left: 0;
 }
