@@ -1,12 +1,12 @@
 package com.example.examproject.model;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Project {
     private int id;
-    private int user_id;
+    private int users_id;
     private String Name;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -15,9 +15,9 @@ public class Project {
     private Date endDate;
     private String status;
 
-    public Project(int id, int user_id, String Name, String description, Date startDate, Date endDate, String status) {
+    public Project(int id, int users_id, String Name, String description, Date startDate, Date endDate, String status) {
         this.id = id;
-        this.user_id = user_id;
+        this.users_id = users_id;
         this.Name = Name;
         this.description = description;
         this.startDate = startDate;
@@ -33,8 +33,8 @@ public class Project {
         return id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUsers_id() {
+        return users_id;
     }
 
     public String getName() {
@@ -61,8 +61,8 @@ public class Project {
         this.id = id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUsers_id(int users_id) {
+        this.users_id = users_id;
     }
 
     public void setName(String Name) {

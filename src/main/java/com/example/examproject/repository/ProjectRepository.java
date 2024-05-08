@@ -1,7 +1,6 @@
 package com.example.examproject.repository;
 
 import com.example.examproject.model.Project;
-import com.example.examproject.model.User;
 import com.example.examproject.util.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -20,17 +19,17 @@ import java.util.ArrayList;
         private String dbUrl;
 
         @Value("root")
-        private String username;
+        private String dbUsername;
 
         @Value("@H0wtomakemoney")
-        private String password;
+        private String dbPassword;
 
         public Project createProject(Project project) {
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, username, password)) {
-                String SQL = "INSERT INTO project (ID, USERS_ID, NAME, DESCRIPTION, STATUS, START_DATE, END_DATE) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+                String SQL = "INSERT INTO project (id, users_id, name, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?)";//de skal være de samme som de er kaldt inde i
                 try (PreparedStatement ps = conn.prepareStatement(SQL)) {
                     ps.setInt(1, project.getId());
-                    ps.setInt(2, project.getUser_id());
+                    ps.setInt(2, project.getUsers_id());
                     ps.setString(3, project.getName());
                     ps.setString(4, project.getDescription());
                     ps.setString(5, project.getStatus());
@@ -57,7 +56,7 @@ import java.util.ArrayList;
             ArrayList<Project> projects = new ArrayList<>();
             String SQL = "SELECT * FROM project";
 
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, username, password);
+            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
                  PreparedStatement ps = conn.prepareStatement(SQL);
                  ResultSet resultSet = ps.executeQuery()) {
 
@@ -65,7 +64,7 @@ import java.util.ArrayList;
                 while (resultSet.next()) {
                     Project project = new Project();
                     project.setId(resultSet.getInt("ID"));
-                    project.setUser_id(resultSet.getInt("USERS_ID"));
+                    project.setUsers_id(resultSet.getInt("USERS_ID"));
                     project.setName(resultSet.getString("NAME"));
                     project.setDescription(resultSet.getString("DESCRIPTION"));
                     project.setStatus(resultSet.getString("STATUS"));
@@ -84,10 +83,10 @@ import java.util.ArrayList;
 
 
         public Project updateProject(Project project) {
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, username, password)) {
+            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
                 String SQL = "UPDATE project SET USERS_ID=?, NAME=?, DESCRIPTION=?, STATUS=?, START_DATE=?, END_DATE=? WHERE ID=?";
                 try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-                    ps.setInt(1, project.getUser_id());
+                    ps.setInt(1, project.getUsers_id());
                     ps.setString(2, project.getName());
                     ps.setString(3, project.getDescription());
                     ps.setString(4, project.getStatus());
@@ -110,7 +109,7 @@ import java.util.ArrayList;
 
 
         public void deleteProject(int projectId) {
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, username, password)) {
+            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
                 String SQL = "DELETE FROM project WHERE ID=?";
                 try (PreparedStatement ps = conn.prepareStatement(SQL)) {
                     ps.setInt(1, projectId);
