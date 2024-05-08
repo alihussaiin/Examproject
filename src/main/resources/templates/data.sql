@@ -8,37 +8,38 @@ DROP TABLE IF EXISTS subproject;
 DROP TABLE IF EXISTS task;
 
 CREATE TABLE users (
-                       users_id INT PRIMARY KEY AUTO_INCREMENT,
+                       id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                        first_name VARCHAR(50),
-                       last_name VARCHAR(50),
                        username VARCHAR(50),
                        password INT(255)
 );
 
 CREATE TABLE project (
-                         project_id INT PRIMARY KEY AUTO_INCREMENT,
+                         id INT PRIMARY KEY AUTO_INCREMENT,
                          users_id INT,
                          name VARCHAR(255),
                          description VARCHAR(255),
                          status VARCHAR(255),
                          start_date DATE,
                          end_date DATE,
-                         FOREIGN KEY (users_id) REFERENCES users(users_id)
+                         FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 CREATE TABLE subproject (
-                            subproject_id INT PRIMARY KEY AUTO_INCREMENT,
+                            id INT PRIMARY KEY AUTO_INCREMENT,
                             project_id INT,
                             name VARCHAR(255),
                             status VARCHAR(255),
                             start_date INT,
                             end_date INT,
-                            FOREIGN KEY (project_id) REFERENCES project(project_id)
+                            FOREIGN KEY (project_id) REFERENCES project(id)
 );
 
 CREATE TABLE task (
-                      task_id INT PRIMARY KEY AUTO_INCREMENT,
+                      id INT PRIMARY KEY AUTO_INCREMENT,
                       subproject_id INT,
                       name VARCHAR(255),
-                      FOREIGN KEY (subproject_id) REFERENCES subproject(subproject_id)
+                      FOREIGN KEY (subproject_id) REFERENCES subproject(id)
 );
+
+select * from users
