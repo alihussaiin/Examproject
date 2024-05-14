@@ -85,7 +85,7 @@ public class UserController {
            // session.setAttribute("loggedInUser", validatedUser);
             //System.out.println("session " + session.getAttribute("loggedInUserId"));
             //session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
-            return "redirect:/project_frontpage"; // Omdiriger brugeren til forsiden
+            return "redirect:/projects"; // Omdiriger brugeren til forsiden
         } else {
             // Brugeren blev ikke fundet i databasen eller adgangskoden er forkert
             model.addAttribute("error", "Invalid username or password");
@@ -99,8 +99,5 @@ public class UserController {
         session.invalidate(); // Udløs sessionen for at logge brugeren ud
         return "redirect:/login"; // Omdiriger brugeren til login-siden
     }
-
-
-
 }
 

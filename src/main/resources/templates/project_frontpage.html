@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projekt Frontpage</title>
@@ -9,7 +10,7 @@
 <div class="container">
     <h1>Project Frontpage</h1>
 
-    <!-- Knappen til at tilføje et ny projekt -->
+    <!-- Knappen til at tilføje et nyt projekt -->
     <div class="button-group">
         <a th:href="@{/create_project}" class="add btn">Opret projekt</a>
     </div>
@@ -18,7 +19,6 @@
     <table>
         <thead>
         <tr>
-            <th>Projekt ID</th>
             <th>Name</th>
             <th>Description</th>
             <th>Rediger</th>
@@ -27,19 +27,18 @@
         </thead>
         <tbody>
         <!-- Her kan du indsætte dynamisk genereret HTML for hver projekt -->
-        <!-- For eksempel: -->
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.name}"></td>
+            <td th:text="${project.description}"></td>
             <td>
-                <form action="/redigerproject" method="post">
-                    <button class="delete" type="submit">Rediger</button>
-                    </form>
-
+                <form th:action="@{/redigerproject}" method="post">
+                    <input type="hidden" name="projectId" th:value="${project.id}">
+                    <button class="edit" type="submit">Rediger</button>
+                </form>
             </td>
             <td>
-                <form action="/deleteproject" method="post">
+                <form th:action="@{deleteProject+'/{id}'}" method="post">
+                    <input type="hidden" name="projectId" th:value="${project.id}">
                     <button class="delete" type="submit">Slet</button>
                 </form>
             </td>
