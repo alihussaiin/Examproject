@@ -20,8 +20,8 @@ public class ProjectService {
     }
 
 
-    public ArrayList<Project> getAllProjects() {
-        return projectRepository.getAllProjects();
+    public ArrayList<Project> getAllProjects(int userId) {
+        return projectRepository.getAllProjects(userId);
     }
 
 

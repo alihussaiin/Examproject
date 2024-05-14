@@ -1,5 +1,4 @@
 package com.example.examproject.controller;
-
 import com.example.examproject.model.Project;
 import com.example.examproject.model.User;
 import com.example.examproject.service.ProjectService;
@@ -34,26 +33,26 @@ public class ProjectController {
         // Få brugerens ID fra sessionen og tilknyt det til det nye projekt
 
         User user = (User) session.getAttribute("loggedInUser");
-       // System.out.println(user.getid());
         project.setUsers_id(user.getid());
-
         // Send projektet til projektets serviceklasse for at gemme det i databasen
         projectService.createProject(project);
 
         // Omdiriger brugeren til forsiden for projekter
-        return "redirect:/project_frontpage";
+        return "redirect:/projects";
     }
 
-    @GetMapping("/project_frontpage")
+   @GetMapping("/project_frontpage")
     public String projectFrontpage(Model model) {
         model.addAttribute("projectObject", new Project());
         return "project_frontpage";
     }
 
+
     // Opret en side for visning af alle projekter
     @GetMapping("/projects")
-    public String getAllProjects(Model model) {
-        ArrayList<Project> projects = projectService.getAllProjects();
+    public String getAllProjects(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("loggedInUser");
+        ArrayList<Project> projects = projectService.getAllProjects(user.getid());
         model.addAttribute("projects", projects);
         return "project_frontpage";
     }
@@ -62,14 +61,14 @@ public class ProjectController {
     @PostMapping("/projects/{id}")
     public String updateProject(@PathVariable("id") int id, @ModelAttribute Project project) {
         projectService.updateProject(project);
-        return "redirect:/project_frontpage";
+        return "redirect:/projects";
     }
 
     @GetMapping("/deleteProject/{id}")
     public String deleteProject(@PathVariable("id") int id, Model model) {
         projectService.deleteProject(id);
         model.addAttribute("project");
-        return "projectID"; // returnerer en view med information om det arkiverede projekt
+        return "redirect:/projects"; // returnerer en view med information om det arkiverede projekt
     }
 
 

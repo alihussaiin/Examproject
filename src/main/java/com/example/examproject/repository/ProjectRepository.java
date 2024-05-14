@@ -34,11 +34,9 @@ import java.util.ArrayList;
                     ps.setDate(5, Date.valueOf(project.getStartDate()));
                     ps.setDate(6, Date.valueOf(project.getEndDate()));
 
-
                     // int rowsafftected betyder at det er antallet af ændringer
 
                     int rowsAffected = ps.executeUpdate();
-
                     // og hvis det antallet af ændringer er 0 skal den kaste en fejl
                     if (rowsAffected == 0) {
                         throw new SQLException("Oprettelse af projekt mislykkedes ingen, rækker påvirket.");
@@ -52,15 +50,19 @@ import java.util.ArrayList;
 
 
 
-        public ArrayList<Project> getAllProjects() {
+        public ArrayList<Project> getAllProjects(int userId) {
             ArrayList<Project> projects = new ArrayList<>();
-            String SQL = "SELECT * FROM project";
+            String SQL = "SELECT * FROM project where users_id = ?";
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet resultSet = null;
 
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-                 PreparedStatement ps = conn.prepareStatement(SQL);
-                 ResultSet resultSet = ps.executeQuery()) {
+            try {
+                conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
+                ps = conn.prepareStatement(SQL);
+                ps.setInt(1, userId);
+                resultSet = ps.executeQuery();
 
-                // Gentag igennem resultatsættet og opret Projekt objekter
                 while (resultSet.next()) {
                     Project project = new Project();
                     project.setId(resultSet.getInt("ID"));
@@ -70,18 +72,17 @@ import java.util.ArrayList;
                     project.setStatus(resultSet.getString("STATUS"));
                     project.setStartDate(resultSet.getDate("START_DATE").toLocalDate());
                     project.setEndDate(resultSet.getDate("END_DATE").toLocalDate());
-                    // Tilføj projektet til listen
                     projects.add(project);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException("Fejl ved hentning af projekter fra databasen", e);
-            }                               // Engelsk = Error retrieving projects from the database
+            }
 
             return projects;
         }
 
 
-        public Project updateProject(Project project) {
+            public Project updateProject(Project project) {
             try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
                 String SQL = "UPDATE project SET USERS_ID=?, NAME=?, DESCRIPTION=?, STATUS=?, START_DATE=?, END_DATE=? WHERE ID=?";
                 try (PreparedStatement ps = conn.prepareStatement(SQL)) {
