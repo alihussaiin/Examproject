@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.examproject.service.UserService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.request.WebRequest;
 
 @Controller
 
@@ -48,17 +49,42 @@ public class UserController {
         return "login";
     }
 
+//    @PostMapping("/login")
+//    public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
+//        // Kontroller, om brugeren findes i databasen
+//        User validatedUser = userService.findbyUsername(user.getUsername());
+//        session.setAttribute("loggedInUser", validatedUser);
+//        System.out.println("validatedUser = " + validatedUser);
+//        System.out.println("user = " + user);
+//
+//        if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
+//            // Brugeren er fundet i databasen og adgangskoden matcher
+//            // Gem brugeren i sessionen i 1800 sekunder
+//            session.setAttribute("loggedInUser", validatedUser);
+//            System.out.println("session " + session.getAttribute("loggedInUserId"));
+//            session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
+//            return "redirect:/project_frontpage"; // Omdiriger brugeren til forsiden
+//        } else {
+//            System.out.println("FEJL");
+//            // Brugeren blev ikke fundet i databasen eller adgangskoden er forkert
+//            model.addAttribute("error", "Invalid username or password");
+//            return "login"; // Tilbage til loginside med fejlmeddelelse
+//        }
+//    }
+
+
     @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
+    public String loginUser(@ModelAttribute User user, WebRequest request, Model model) {
         // Kontroller, om brugeren findes i databasen
         User validatedUser = userService.findbyUsername(user.getUsername());
-        System.out.println("validatedUser = " + validatedUser);
+        request.setAttribute("loggedInUser", validatedUser, WebRequest.SCOPE_SESSION);
 
         if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
             // Brugeren er fundet i databasen og adgangskoden matcher
             // Gem brugeren i sessionen i 1800 sekunder
-            session.setAttribute("loggedInUser", validatedUser);
-            session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
+           // session.setAttribute("loggedInUser", validatedUser);
+            //System.out.println("session " + session.getAttribute("loggedInUserId"));
+            //session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
             return "redirect:/project_frontpage"; // Omdiriger brugeren til forsiden
         } else {
             // Brugeren blev ikke fundet i databasen eller adgangskoden er forkert
@@ -68,19 +94,13 @@ public class UserController {
     }
 
 
-
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // Udløs sessionen for at logge brugeren ud
         return "redirect:/login"; // Omdiriger brugeren til login-siden
     }
 
-    @GetMapping("/project_frontpage")
-    public String showProjectFrontPage(Model model) {
-        // Her kan du tilføje eventuelle data, du vil vise på projektets forside
-        return "project_frontpage"; // Returner navnet på HTML-siden for projektets forside
-    }
+
 
 }
 

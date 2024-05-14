@@ -9,7 +9,7 @@
 <body>
 <div class="container mt-5">
     <h2>Create Project</h2>
-    <form th:action="@{/create_project}" th:object="${project}" method="post">
+    <form th:action="@{/create_project}" th:object="${projectObject}" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter project name" required>
@@ -34,10 +34,13 @@
             <label for="endDate">End Date</label>
             <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
         </div>
+
+
         <div class="button-group">
             <button type="submit" class="btn btn-primary">Create Project</button>
             <a href="/project_frontpage" class="btn btn-primary">Cancel</a>
         </div>
+
     </form>
 </div>
 </body>

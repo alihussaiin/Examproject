@@ -1,7 +1,9 @@
 package com.example.examproject.controller;
 
 import com.example.examproject.model.Project;
+import com.example.examproject.model.User;
 import com.example.examproject.service.ProjectService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +25,29 @@ public class ProjectController {
     //opret projekt og går hen til stien createProject
     @GetMapping("/create_project")
     public String createProjectform(Model model) {
-        model.addAttribute("project", new Project());
+        model.addAttribute("projectObject", new Project());
         return "create_project";
     }
 
-    //modtager datainput fra brugeren og sender dataen til databasen
     @PostMapping("/create_project")
-    public String createProject(@ModelAttribute Project project) {
+    public String createProject(@ModelAttribute Project project, HttpSession session) {
+        // Få brugerens ID fra sessionen og tilknyt det til det nye projekt
+
+        User user = (User) session.getAttribute("loggedInUser");
+       // System.out.println(user.getid());
+        project.setUsers_id(user.getid());
+
+        // Send projektet til projektets serviceklasse for at gemme det i databasen
         projectService.createProject(project);
+
+        // Omdiriger brugeren til forsiden for projekter
         return "redirect:/project_frontpage";
+    }
+
+    @GetMapping("/project_frontpage")
+    public String projectFrontpage(Model model) {
+        model.addAttribute("projectObject", new Project());
+        return "project_frontpage";
     }
 
     // Opret en side for visning af alle projekter

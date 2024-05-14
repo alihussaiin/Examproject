@@ -3,6 +3,7 @@ package com.example.examproject.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Project {
     private int id;
@@ -10,12 +11,12 @@ public class Project {
     private String Name;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
+    private LocalDate endDate;
     private String status;
 
-    public Project(int id, int users_id, String Name, String description, Date startDate, Date endDate, String status) {
+    public Project(int id, int users_id, String Name, String description, LocalDate startDate, LocalDate endDate, String status) {
         this.id = id;
         this.users_id = users_id;
         this.Name = Name;
@@ -45,11 +46,11 @@ public class Project {
         return description;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -73,11 +74,11 @@ public class Project {
         this.description = description;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
