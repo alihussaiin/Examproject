@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,7 @@
     <div th:if="${error}" class="alert alert-danger" role="alert">
         <span th:text="${error}"></span>
     </div>
+
     <a href="/" class="btn btn-secondary">Back</a>
 </div>
 </body>
