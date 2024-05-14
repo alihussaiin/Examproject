@@ -26,7 +26,6 @@ import java.util.ArrayList;
             Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
             String SQL = "INSERT INTO project (users_id, name, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?)";//de skal være de samme som de er kaldt inde i
 
-
                 try (PreparedStatement ps = conn.prepareStatement(SQL)) {
                     ps.setInt(1, project.getUsers_id());
                     ps.setString(2, project.getName());
@@ -50,6 +49,8 @@ import java.util.ArrayList;
                 }
                 return project; // Returnerer det lavet project
         }
+
+
 
         public ArrayList<Project> getAllProjects() {
             ArrayList<Project> projects = new ArrayList<>();

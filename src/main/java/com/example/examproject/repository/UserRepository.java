@@ -21,8 +21,9 @@ public class UserRepository {
 
 
     public User registerUser(User user) {
-        try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
-            String SQL = "INSERT INTO users (ID, FIRST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)";
+        Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
+        String SQL = "INSERT INTO users (ID, FIRST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)";
+
             try (PreparedStatement ps = conn.prepareStatement(SQL)) {
                 ps.setInt(1, user.getid());
                 ps.setString(2, user.getFirstname());
@@ -31,7 +32,7 @@ public class UserRepository {
 
                 ps.executeUpdate();
             }
-        } catch (SQLException e) {
+         catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return user;
@@ -39,8 +40,8 @@ public class UserRepository {
 
     //TODO refactor if time
     public User findById(int id) {
-        try (Connection con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE id = ?")) {
+        try (Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?")) {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -58,8 +59,8 @@ public class UserRepository {
 
 
     public User findByUsername(String username) {
-        try (Connection con = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE username = ?")) {
+        try (Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM users WHERE username = ?")) {
             pstmt.setString(1, username);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
