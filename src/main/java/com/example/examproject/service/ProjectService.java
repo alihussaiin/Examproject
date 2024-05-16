@@ -33,6 +33,10 @@ public class ProjectService {
         projectRepository.updateProject(updateProject);
     }
 
+    public Project getProjectById(int id) {
+        return projectRepository.getProjectById(id);
+    }
+
     public void deleteProject(int id) {
 
         projectRepository.deleteProject(id);

@@ -5,10 +5,7 @@ import com.example.examproject.service.ProjectService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -58,19 +55,26 @@ public class ProjectController {
     }
 
 
-    @PostMapping("/projects/{id}")
-    public String updateProject(@PathVariable("id") int id, @ModelAttribute Project project) {
+    @GetMapping("/edit_project/{id}")
+    public String showEditProjectForm(@PathVariable("id") int id, Model model) {
+        Project project = projectService.getProjectById(id);
+        model.addAttribute("project", project);
+        return "edit_project";
+    }
+
+    @PostMapping("/edit_project/{id}")
+    public String updateProject(Project project) {
         projectService.updateProject(project);
         return "redirect:/projects";
     }
 
-    @GetMapping("/deleteProject/{id}")
-    public String deleteProject(@PathVariable("id") int id, Model model) {
+
+    @PostMapping("/deleteProject")
+    public String deleteProject(@RequestParam("projectId") int id, Model model) {
         projectService.deleteProject(id);
         model.addAttribute("project");
-        return "redirect:/projects"; // returnerer en view med information om det arkiverede projekt
+        return "redirect:/projects";
+
     }
-
-
 }
 
