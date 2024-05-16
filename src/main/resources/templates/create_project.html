@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Project</title>
-    <link rel="stylesheet" href="register.css">
+    <title>Opret projekt</title>
+    <link rel="stylesheet" href="/register.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Create Project</h2>
+    <h2>Opret projekt</h2>
     <form th:action="@{/create_project}" th:object="${projectObject}" method="post">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter project name" required>
+            <label for="name">Navn</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Indtast navn" required>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" th:field="*{description}" placeholder="Enter project description" required></textarea>
+            <label for="description">Projekt beskrivelse</label>
+            <textarea class="form-control" id="description" th:field="*{description}" placeholder="Projekt beskrivelse" required></textarea>
         </div>
         <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control" id="status" th:field="*{status}" required>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
+                <option value="Afventer">Afventer</option>
+                <option value="Igangsat">Igangsat</option>
+                <option value="Fuldført">Fuldført</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="startDate">Start Date</label>
+            <label for="startDate">Start Dato</label>
             <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required>
         </div>
         <div class="form-group">
-            <label for="endDate">End Date</label>
+            <label for="endDate">Slut Dato</label>
             <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
         </div>
 
 
         <div class="button-group">
-            <button type="submit" class="btn btn-primary">Create Project</button>
-            <a href="/project_frontpage" class="btn btn-primary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Opret projekt</button>
+            <a href="/project_frontpage" class="btn btn-primary">Tilbage</a>
         </div>
 
     </form>

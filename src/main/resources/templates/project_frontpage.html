@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projekt Frontpage</title>
+    <title>Alpha Solutions</title>
     <link rel="stylesheet" href="project_frontpage.css">
 </head>
 <body>
 <div class="container">
-    <h1>Project Frontpage</h1>
+    <h1>Projekt forside</h1>
+    <nav class="navbar">
+        <ul>
+            <li class="logud-button">
+                <a th:href="@{/logud}">Logud</a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- Knappen til at tilføje et nyt projekt -->
     <div class="button-group">
@@ -19,8 +26,11 @@
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Navn</th>
+            <th>Projekt beskrivelse</th>
+            <th>Status</th>
+            <th>Start dato</th>
+            <th>Slut dato</th>
             <th>Rediger</th>
             <th>Slet</th>
         </tr>
@@ -30,14 +40,17 @@
         <tr th:each="project : ${projects}">
             <td th:text="${project.name}"></td>
             <td th:text="${project.description}"></td>
+            <td th:text="${project.status}"></td>
+            <td th:text="${project.startDate}"></td>
+            <td th:text="${project.endDate}"></td>
             <td>
-                <form th:action="@{/redigerproject}" method="post">
+                <form th:action="@{/edit_project/{id}(id = ${project.id})}" method="get">
                     <input type="hidden" name="projectId" th:value="${project.id}">
                     <button class="edit" type="submit">Rediger</button>
                 </form>
             </td>
             <td>
-                <form th:action="@{deleteProject+'/{id}'}" method="post">
+                <form th:action="@{/deleteProject}" method="post">
                     <input type="hidden" name="projectId" th:value="${project.id}">
                     <button class="delete" type="submit">Slet</button>
                 </form>

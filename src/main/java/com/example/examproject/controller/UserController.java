@@ -94,10 +94,10 @@ public class UserController {
     }
 
 
-    @GetMapping("/logout")
+    @GetMapping("/logud")
     public String logout(HttpSession session) {
         session.invalidate(); // Udløs sessionen for at logge brugeren ud
-        return "redirect:/login"; // Omdiriger brugeren til login-siden
+        return "index"; // Omdiriger brugeren til forside
     }
 }
 

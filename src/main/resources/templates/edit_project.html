@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rediger projekt</title>
+    <link rel="stylesheet" href="/edit_project.css">
+</head>
+<body>
+<div class="container">
+    <h1>Rediger projekt</h1>
+
+    <form th:action="@{/edit_project/{id}(id=${project.id})}" method="post" th:object="${project}">
+        <input type="hidden" name="projectId" th:value="${project.id}">
+
+        <label for="name">Navn</label>
+        <input type="text" id="name" name="name" th:value="${project.name}">
+
+        <label for="description">Projekt beskrivelse</label>
+        <textarea id="description" name="description" th:text="${project.description}"></textarea>
+
+        <label for="startDate">Start Dato</label>
+        <input type="date" id="startDate" name="startDate" th:value="${project.startDate}">
+
+        <label for="endDate">Slut Dato</label>
+        <input type="date" id="endDate" name="endDate" th:value="${project.endDate}">
+
+        <label for="status">Status</label>
+        <input type="text" id="status" name="status" th:value="${project.status}">
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Gem</button>
+            <a href="/project_frontpage" class="btn btn-primary">Tilbage</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
