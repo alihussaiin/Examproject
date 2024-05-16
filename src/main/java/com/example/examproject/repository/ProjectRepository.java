@@ -26,28 +26,27 @@ import java.util.ArrayList;
             Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
             String SQL = "INSERT INTO project (users_id, name, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?)";//de skal være de samme som de er kaldt inde i
 
-                try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-                    ps.setInt(1, project.getUsers_id());
-                    ps.setString(2, project.getName());
-                    ps.setString(3, project.getDescription());
-                    ps.setString(4, project.getStatus());
-                    ps.setDate(5, Date.valueOf(project.getStartDate()));
-                    ps.setDate(6, Date.valueOf(project.getEndDate()));
+            try (PreparedStatement ps = conn.prepareStatement(SQL)) {
+                ps.setInt(1, project.getUsers_id());
+                ps.setString(2, project.getName());
+                ps.setString(3, project.getDescription());
+                ps.setString(4, project.getStatus());
+                ps.setDate(5, Date.valueOf(project.getStartDate()));
+                ps.setDate(6, Date.valueOf(project.getEndDate()));
 
-                    // int rowsafftected betyder at det er antallet af ændringer
+                // int rowsafftected betyder at det er antallet af ændringer
 
-                    int rowsAffected = ps.executeUpdate();
-                    // og hvis det antallet af ændringer er 0 skal den kaste en fejl
-                    if (rowsAffected == 0) {
-                        throw new SQLException("Oprettelse af projekt mislykkedes ingen, rækker påvirket.");
-                        //Creating project failed, no rows affected.
-                    }
-                }catch (SQLException e) {
-                    e.printStackTrace();
+                int rowsAffected = ps.executeUpdate();
+                // og hvis det antallet af ændringer er 0 skal den kaste en fejl
+                if (rowsAffected == 0) {
+                    throw new SQLException("Oprettelse af projekt mislykkedes ingen, rækker påvirket.");
+                    //Creating project failed, no rows affected.
                 }
-                return project; // Returnerer det lavet project
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return project; // Returnerer det lavet project
         }
-
 
 
         public ArrayList<Project> getAllProjects(int userId) {
@@ -82,48 +81,118 @@ import java.util.ArrayList;
         }
 
 
-            public Project updateProject(Project project) {
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+        public Project updateProject(Project project) {
+            Connection conn = null;
+            PreparedStatement ps = null;
+            try {
+                conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
                 String SQL = "UPDATE project SET USERS_ID=?, NAME=?, DESCRIPTION=?, STATUS=?, START_DATE=?, END_DATE=? WHERE ID=?";
-                try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-                    ps.setInt(1, project.getUsers_id());
-                    ps.setString(2, project.getName());
-                    ps.setString(3, project.getDescription());
-                    ps.setString(4, project.getStatus());
-                    ps.setDate(6, Date.valueOf(project.getStartDate()));
-                    ps.setDate(7, Date.valueOf(project.getEndDate()));
-                    ps.setInt(7, project.getId());
+                ps = conn.prepareStatement(SQL);
+                ps.setInt(1, project.getUsers_id());
+                ps.setString(2, project.getName());
+                ps.setString(3, project.getDescription());
+                ps.setString(4, project.getStatus());
+                ps.setDate(5, Date.valueOf(project.getStartDate()));
+                ps.setDate(6, Date.valueOf(project.getEndDate()));
+                ps.setInt(7, project.getId());
 
-                    //int rowsafftected betyder at det er antallet af ændringer
-                    int rowsAffected = ps.executeUpdate();
-                    // og hvis det antallet af ændringer er 0 skal den kaste en fejl
-                    if (rowsAffected == 0) {
-                        throw new SQLException("Oprettelse af projekt mislykkedes ingen, rækker påvirket");
-                        //Creating project failed, no rows affected.
-                    }
+                // Execute the update
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 0) {
+                    throw new SQLException("Updating project failed, no rows affected.");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
-            } return project; // Returnere det opdateret projekt
+            } finally {
+                // Close PreparedStatement
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Do not close Connection here if you want to reuse it
+            }
+            return project; // Return the updated project
         }
 
 
         public void deleteProject(int projectId) {
-            try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+            Connection conn = null;
+            PreparedStatement ps = null;
+            try {
+                conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
                 String SQL = "DELETE FROM project WHERE ID=?";
-                try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-                    ps.setInt(1, projectId);
+                ps = conn.prepareStatement(SQL);
+                ps.setInt(1, projectId);
 
-                    // Udfør sletningen
-                    int rowsAffected = ps.executeUpdate();
-                    if (rowsAffected == 0) {
-                        throw new SQLException("Sletning af projekt fejlet, ingen rækker påvirket");
-                        //Deleting project failed, no rows affected.
-                    }
+                // Execute the deletion
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 0) {
+                    throw new SQLException("Deleting project failed, no rows affected.");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            } finally {
+                // Close PreparedStatement
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Do not close Connection here if you want to reuse it
             }
         }
+
+        public Project getProjectById(int projectId) {
+            Project project = null;
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet resultSet = null;
+            try {
+                conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
+                String SQL = "SELECT * FROM project WHERE ID=?";
+                ps = conn.prepareStatement(SQL);
+                ps.setInt(1, projectId);
+                resultSet = ps.executeQuery();
+                if (resultSet.next()) {
+                    project = new Project();
+                    project.setId(resultSet.getInt("ID"));
+                    project.setUsers_id(resultSet.getInt("USERS_ID"));
+                    project.setName(resultSet.getString("NAME"));
+                    project.setDescription(resultSet.getString("DESCRIPTION"));
+                    project.setStatus(resultSet.getString("STATUS"));
+                    project.setStartDate(resultSet.getDate("START_DATE").toLocalDate());
+                    project.setEndDate(resultSet.getDate("END_DATE").toLocalDate());
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                // Close ResultSet
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Close PreparedStatement
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Do not close Connection here if you want to reuse it
+            }
+            return project;
+        }
+
     }
+
+
 
