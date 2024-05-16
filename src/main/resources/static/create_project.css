@@ -2,18 +2,22 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
 .container {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 80px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h1, h2 {
     text-align: center;
+    color: #333;
 }
 
 form {
@@ -23,6 +27,8 @@ form {
 
 label {
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
 }
 
 input[type="text"],
@@ -33,17 +39,51 @@ input[type="date"] {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    background-color: #fafafa;
+    transition: border-color 0.3s;
 }
 
-button {
+input[type="text"]:focus,
+textarea:focus,
+select:focus,
+input[type="date"]:focus {
+    border-color: #007bff;
+}
+
+button, .btn {
     padding: 10px 20px;
     border: none;
-    background-color: #007bff;
-    color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-button:hover {
+button.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 10px;
+}
+
+button.btn-primary:hover {
     background-color: #0056b3;
+}
+
+a.btn {
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+a.btn:hover {
+    background-color: #c82333;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }

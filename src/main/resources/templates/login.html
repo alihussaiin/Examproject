@@ -11,12 +11,12 @@
     <h2>Login</h2>
     <form action="/login" method="post">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+            <label for="username">Brugernavn</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Indtast navn" required>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            <label for="password">Kodeord</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Indtast kodeord" required>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
@@ -24,7 +24,7 @@
         <span th:text="${error}"></span>
     </div>
 
-    <a href="/" class="btn btn-secondary">Back</a>
+    <a href="/" class="btn btn-secondary">Tilbage</a>
 </div>
 </body>
 </html>
