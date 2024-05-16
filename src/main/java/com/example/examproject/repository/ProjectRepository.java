@@ -86,17 +86,19 @@ import java.util.ArrayList;
             PreparedStatement ps = null;
             try {
                 conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-                String SQL = "UPDATE project SET USERS_ID=?, NAME=?, DESCRIPTION=?, STATUS=?, START_DATE=?, END_DATE=? WHERE ID=?";
+                // Opdater SQL-udtrykket ved at fjerne USERS_ID
+                String SQL = "UPDATE project SET NAME=?, DESCRIPTION=?, STATUS=?, START_DATE=?, END_DATE=? WHERE ID=?";
                 ps = conn.prepareStatement(SQL);
-                ps.setInt(1, project.getUsers_id());
-                ps.setString(2, project.getName());
-                ps.setString(3, project.getDescription());
-                ps.setString(4, project.getStatus());
-                ps.setDate(5, Date.valueOf(project.getStartDate()));
-                ps.setDate(6, Date.valueOf(project.getEndDate()));
-                ps.setInt(7, project.getId());
 
-                // Execute the update
+                // Sæt parametrene undtagen USERS_ID og ID
+                ps.setString(1, project.getName());
+                ps.setString(2, project.getDescription());
+                ps.setString(3, project.getStatus());
+                ps.setDate(4, Date.valueOf(project.getStartDate()));
+                ps.setDate(5, Date.valueOf(project.getEndDate()));
+                ps.setInt(6, project.getId());  // ID skal bruges i WHERE-betingelsen
+
+                // Udfør opdateringen
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 0) {
                     throw new SQLException("Updating project failed, no rows affected.");
@@ -104,7 +106,7 @@ import java.util.ArrayList;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } finally {
-                // Close PreparedStatement
+                // Luk PreparedStatement
                 if (ps != null) {
                     try {
                         ps.close();
@@ -112,10 +114,11 @@ import java.util.ArrayList;
                         e.printStackTrace();
                     }
                 }
-                // Do not close Connection here if you want to reuse it
+                // Luk Connection hvis nødvendigt (håndteres udenfor metoden hvis nødvendigt)
             }
-            return project; // Return the updated project
+            return project; // Returnér det opdaterede projekt
         }
+
 
 
         public void deleteProject(int projectId) {
