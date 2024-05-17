@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekræft Sletning</title>
     <link rel="stylesheet" href="/confirm_delete.css">
 </head>
 <body>
 <div class="container">
-    <p>Er du sikker på, at du vil slette dette projekt? Alle oplysninger vil gå tabt.</p>
+    <p>Er du sikker på at du vil slette dette projekt? Alle oplysninger vil gå tabt.</p>
     <form th:action="@{/deleteProject}" method="post">
         <input type="hidden" name="projectId" th:value="${projectId}">
         <button type="submit" class="btn delete">Slet</button>

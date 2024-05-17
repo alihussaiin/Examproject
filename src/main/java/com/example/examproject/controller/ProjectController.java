@@ -70,6 +70,8 @@ public class ProjectController {
 
     @GetMapping("/confirm_delete/{id}")
     public String confirmDelete(@PathVariable("id") int id, Model model) {
+        //subproject
+        //task
         model.addAttribute("projectId", id);
         return "confirm_delete";
     }
