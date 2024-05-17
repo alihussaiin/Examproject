@@ -68,6 +68,12 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
+    @GetMapping("/confirm_delete/{id}")
+    public String confirmDelete(@PathVariable("id") int id, Model model) {
+        model.addAttribute("projectId", id);
+        return "confirm_delete";
+    }
+
 
     @PostMapping("/deleteProject")
     public String deleteProject(@RequestParam("projectId") int id, Model model) {
@@ -76,5 +82,6 @@ public class ProjectController {
         return "redirect:/projects";
 
     }
+
 }
 
