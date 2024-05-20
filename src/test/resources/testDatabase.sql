@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS projectmanager_db;
-CREATE DATABASE projectmanager_db;
-USE projectmanager_db;
+DROP DATABASE IF EXISTS projectmanager_db_test;
+CREATE DATABASE projectmanager_db_test;
+USE projectmanager_db_test;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS project;
@@ -43,4 +43,8 @@ CREATE TABLE task (
 );
 
 INSERT INTO project (id, users_id, name, description, status, start_date, end_date) VALUES
-(1, 2, 'eksamen','final', 'in progress', '15-05-2024', '16-05-2024')
+                                                                                        (1, null, 'projekt 1','final', 'igang', '2024-05-15', '2024-05-25'),
+                                                                                        (2, null, 'projekt 2','robotics','igang','2024-05-20', '2024-05-25'),
+                                                                                        (3, null, 'projekt 3','game development', 'igang', '2024-05-05', '2024-05-30'),
+                                                                                        (4, null, 'projekt 4','fullstack', 'igang', '2024-05-01', '2024-05-31'),
+                                                                                        (5, null, 'projekt 5','security', 'igang', '2024-05-01', '2024-05-25');

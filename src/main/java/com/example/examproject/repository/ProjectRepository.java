@@ -12,7 +12,7 @@ import java.util.ArrayList;
     public class ProjectRepository {
 
 
-        @Value("jdbc:mysql://localhost:3306/projectmanager_db")
+        @Value("jdbc:mysql://localhost:3306/projectmanager_db_test")
         private String dbUrl;
 
         @Value("root")

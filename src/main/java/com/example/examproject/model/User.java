@@ -4,10 +4,10 @@ package com.example.examproject.model;
 public class User {
     private String firstname;
     private String username;
-    private Integer password;
+    private String password;
     private int id;
 
-    public User(String firstname, String username, Integer password, int id) {
+    public User(String firstname, String username, String password, int id) {
         this.firstname = firstname;
         this.username = username;
         this.password = password;
@@ -37,12 +37,12 @@ public class User {
         this.username = username;
     }
 
-    public Integer getPassword() {
+    public String getPassword() {
 
         return password;
     }
 
-    public void setPassword(Integer password) {
+    public void setPassword(String password) {
 
         this.password = password;
     }
