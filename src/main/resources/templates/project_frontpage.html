@@ -50,7 +50,7 @@
                 </form>
             </td>
             <td>
-                <form th:action="@{/deleteProject}" method="post">
+                <form th:action="@{/delete}" method="post">
                     <input type="hidden" name="projectId" th:value="${project.id}">
                     <button class="delete" type="submit">Slet</button>
                 </form>

@@ -7,13 +7,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("h2")
+@ActiveProfiles("test")
 public class ProjectRepositoryTest {
 
     //Act
     @Test
     void createProject() {
-        var project = new Project(1, 1,"hej", '15-05-2024','16-05-2024');
+        Project project = new Project(1, 1,"hej", Local.date.now(),'16-05-2024');
 
 
     }
