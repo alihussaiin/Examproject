@@ -5,40 +5,39 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Subproject {
-
+    private int id;
+    private int project_Id;
     private String subprojectName;
     private String description;
     private String status;
-    private int id;
-    private int project_id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    // Constructor med alle attributter
-    public Subproject(String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate, int project_id) {
+    public Subproject (String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate, int id, int project_Id) {
+
         this.subprojectName = subprojectName;
         this.description = description;
         this.status = status;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.project_id = project_id;
+        this.id = id;
+        this.project_Id = project_Id;
     }
 
-    // Constructor uden id og project_id
-    public Subproject(String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate) {
-        this.subprojectName = subprojectName;
-        this.description = description;
-        this.status = status;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Subproject() {
+
     }
 
-    // No-argument constructor
-    public Subproject() {}
+    public int getId() {
+        return id;
+    }
 
-    // Getters
+    public int getProject_Id() {
+        return project_Id;
+    }
+
     public String getSubprojectName() {
         return subprojectName;
     }
@@ -59,15 +58,14 @@ public class Subproject {
         return endDate;
     }
 
-    public int getId() {
-        return id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getProjectId() {
-        return project_id;
+    public void setProjectId(int project_Id) {
+        this.project_Id = project_Id;
     }
 
-    // Setters
     public void setSubprojectName(String subprojectName) {
         this.subprojectName = subprojectName;
     }
@@ -88,18 +86,12 @@ public class Subproject {
         this.endDate = endDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setProjectId(int project_id) {
-        this.project_id = project_id;
-    }
-
     @Override
     public String toString() {
         return "Subproject{" +
-                "subprojectName='" + subprojectName + '\'' +
+                "id=" + id +
+                ", project_Id=" + project_Id +
+                ", subprojectName='" + subprojectName + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", startDate=" + startDate +
@@ -107,3 +99,4 @@ public class Subproject {
                 '}';
     }
 }
+
