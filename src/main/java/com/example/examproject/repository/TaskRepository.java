@@ -22,11 +22,11 @@ public class TaskRepository {
 
     public Task createTask(Task task) {
         Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-        String SQL = "INSERT INTO task (sub_project_id, task_name, status, priority) VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO task (subProject_id, taskName, status, priority) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-            ps.setInt(1, task.getSubProjectId());
-            ps.setString(2, task.getTaskName());
+            ps.setInt(1, task.getSubProject_Id());
+            ps.setString(2, task.getDescriptions());
             ps.setString(3, task.getStatus());
             ps.setString(4, task.getPriority());
 
@@ -56,8 +56,8 @@ public class TaskRepository {
             while (resultSet.next()) {
                 Task task = new Task();
                 task.setId(resultSet.getInt("ID"));
-                task.setSubProjectId(resultSet.getInt("SUB_PROJECT_ID"));
-                task.setTaskName(resultSet.getString("TASK_NAME"));
+                task.setSubProject_Id(resultSet.getInt("SUB_PROJECT_ID"));
+                task.setDescriptions(resultSet.getString("TASK_NAME"));
                 task.setStatus(resultSet.getString("STATUS"));
                 task.setPriority(resultSet.getString("PRIORITY"));
                 tasks.add(task);
@@ -92,7 +92,7 @@ public class TaskRepository {
             String SQL = "UPDATE task SET TASK_NAME=?, STATUS=?, PRIORITY=? WHERE ID=?";
             ps = conn.prepareStatement(SQL);
 
-            ps.setString(1, task.getTaskName());
+            ps.setString(1, task.getDescriptions());
             ps.setString(2, task.getStatus());
             ps.setString(3, task.getPriority());
             ps.setInt(4, task.getId());
@@ -155,8 +155,8 @@ public class TaskRepository {
             if (resultSet.next()) {
                 task = new Task();
                 task.setId(resultSet.getInt("ID"));
-                task.setSubProjectId(resultSet.getInt("SUB_PROJECT_ID"));
-                task.setTaskName(resultSet.getString("TASK_NAME"));
+                task.setSubProject_Id(resultSet.getInt("SUB_PROJECT_ID"));
+                task.setDescriptions(resultSet.getString("TASK_NAME"));
                 task.setStatus(resultSet.getString("STATUS"));
                 task.setPriority(resultSet.getString("PRIORITY"));
             }

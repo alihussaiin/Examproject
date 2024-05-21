@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+    <link rel="stylesheet" href="/create_task.css">
 </head>
 <body>
-
+<div class="container">
+    <h1>Create Task</h1>
+    <form th:action="@{/create_task}" th:object="${taskObject}" method="post">
+        <input type="hidden" name="subProjectId" value="${subProjectId}">
+        <div class="form-group">
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" name="taskName" required>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status" required>
+        </div>
+        <div class="form-group">
+            <label for="priority">Priority:</label>
+            <input type="text" id="priority" name="priority" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Create Task</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

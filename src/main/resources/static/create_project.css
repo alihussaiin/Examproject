@@ -10,14 +10,15 @@ body {
     margin: 80px auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px; /* Ændret fra 5px til 10px for en mere afrundet kant */
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ændret skyggen til at være lidt større */
 }
 
 h1, h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px; /* Tilføjet margin-bottom for bedre afstand */
 }
 
 form {
@@ -35,12 +36,13 @@ input[type="text"],
 textarea,
 select,
 input[type="date"] {
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Øget margin-bottom for bedre afstand */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fafafa;
     transition: border-color 0.3s;
+    font-size: 16px; /* Tilføjet font-size for ensartet skriftstørrelse */
 }
 
 input[type="text"]:focus,
@@ -48,6 +50,8 @@ textarea:focus,
 select:focus,
 input[type="date"]:focus {
     border-color: #007bff;
+    outline: none; /* Fjernet default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Tilføjet boks skygge ved fokus */
 }
 
 button, .btn {
@@ -62,6 +66,7 @@ button.btn-primary {
     background-color: #007bff;
     color: #fff;
     margin-right: 10px;
+    transition: background-color 0.3s; /* Tilføjet transition for baggrundsfarve */
 }
 
 button.btn-primary:hover {
@@ -75,6 +80,8 @@ a.btn {
     text-align: center;
     display: inline-block;
     margin-top: 10px;
+    padding: 10px 20px; /* Tilføjet padding for ensartet størrelse med knapper */
+    transition: background-color 0.3s; /* Tilføjet transition for baggrundsfarve */
 }
 
 a.btn:hover {
@@ -86,4 +93,20 @@ a.btn:hover {
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group .btn,
+    .button-group button {
+        width: 100%;
+        margin: 5px 0; /* Tilføjet margin for bedre afstand på små skærme */
+    }
 }

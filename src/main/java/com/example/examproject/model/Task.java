@@ -1,36 +1,38 @@
 package com.example.examproject.model;
 
 public class Task {
-    private String taskName;
+    private String descriptions;
     private String status;
     private String priority;
     private int id;
-    private int subProjectId;
+    private int subProject_Id;
+
+
 
     public Task() {
     }
 
-    public Task (String taskName, String status, String priority, int id) {
-        this.taskName = taskName;
+    public Task (String descriptions, String status, String priority, int id) {
+        this.descriptions = descriptions;
         this.status = status;
         this.priority = priority;
         this.id = id;
     }
 
-    public Task (String taskName, String status, String priority, int id, int subProjectId) {
-        this.taskName = taskName;
+    public Task (String descriptions, String status, String priority, int id, int subProject_Id) {
+        this.descriptions = descriptions;
         this.status = status;
         this.priority = priority;
         this.id = id;
-        this.subProjectId = subProjectId;
+        this.subProject_Id = subProject_Id;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
 
     public String getStatus() {
@@ -57,11 +59,11 @@ public class Task {
         this.id = id;
     }
 
-    public int getSubProjectId() {
-        return subProjectId;
+    public int getSubProject_Id() {
+        return subProject_Id;
     }
 
-    public void setSubProjectId(int subProjectId) {
-        this.subProjectId = subProjectId;
+    public void setSubProject_Id(int subProject_Id) {
+        this.subProject_Id = subProject_Id;
     }
 }

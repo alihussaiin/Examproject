@@ -2,6 +2,7 @@ package com.example.examproject.controller;
 
 import com.example.examproject.model.Task;
 import com.example.examproject.service.TaskService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +18,17 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/create_task/{subProjectId}")
-    public String createTaskForm(@PathVariable("subProjectId") int subProjectId, Model model) {
+    @GetMapping("/create_task")
+    public String createTaskForm(Model model) {
         model.addAttribute("taskObject", new Task());
-        model.addAttribute("subProjectId", subProjectId);
+
         return "create_task";
     }
 
     @PostMapping("/create_task")
-    public String createTask(@ModelAttribute Task task, @RequestParam("subProjectId") int subProjectId) {
-        task.setSubProjectId(subProjectId);
+    public String createTask(@ModelAttribute Task task, HttpSession session) {
+        int subProjectId = (int) session.getAttribute("subProjectId");
+        task.setSubProject_Id(subProjectId);
         taskService.createTask(task);
         return "redirect:/subproject/" + subProjectId;
     }
@@ -49,11 +51,11 @@ public class TaskController {
     @PostMapping("/edit_task/{id}")
     public String updateTask(Task task) {
         taskService.updateTask(task);
-        return "redirect:/subproject/" + task.getSubProjectId();
+        return "redirect:/subproject/" + task.getSubProject_Id();
     }
 
     @PostMapping("/deleteTask")
-    public String deleteTask(@RequestParam("taskId") int id, @RequestParam("subProjectId") int subProjectId) {
+    public String deleteTask(@RequestParam("taskId") int id, @RequestParam("subProjectId") int subProjectId ) {
         taskService.deleteTask(id);
         return "redirect:/subproject/" + subProjectId;
     }

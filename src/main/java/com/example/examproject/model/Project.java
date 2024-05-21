@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Project {
     private int id;
     private int users_id;
-    private String Name;
+    private String name;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
@@ -13,10 +13,10 @@ public class Project {
     private LocalDate endDate;
     private String status;
 
-    public Project(int id, int users_id, String Name, String description, LocalDate startDate, LocalDate endDate, String status) {
+    public Project(int id, int users_id, String name, String description, LocalDate startDate, LocalDate endDate, String status) {
         this.id = id;
         this.users_id = users_id;
-        this.Name = Name;
+        this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -36,7 +36,7 @@ public class Project {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getDescription() {
@@ -63,8 +63,8 @@ public class Project {
         this.users_id = users_id;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDescription(String description) {
@@ -87,7 +87,7 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

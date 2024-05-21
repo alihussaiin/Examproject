@@ -9,13 +9,25 @@ public class Subproject {
     private String subprojectName;
     private String description;
     private String status;
+    private int id;
+    private int project_id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    public Subproject (String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate) {
+    // Constructor med alle attributter
+    public Subproject(String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate, int project_id) {
+        this.subprojectName = subprojectName;
+        this.description = description;
+        this.status = status;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.project_id = project_id;
+    }
 
+    // Constructor uden id og project_id
+    public Subproject(String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate) {
         this.subprojectName = subprojectName;
         this.description = description;
         this.status = status;
@@ -23,14 +35,13 @@ public class Subproject {
         this.endDate = endDate;
     }
 
-    public Subproject () {
+    // No-argument constructor
+    public Subproject() {}
 
-    }
-
+    // Getters
     public String getSubprojectName() {
         return subprojectName;
     }
-
 
     public String getDescription() {
         return description;
@@ -40,7 +51,7 @@ public class Subproject {
         return status;
     }
 
-    public LocalDate getStartDate () {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
@@ -48,11 +59,20 @@ public class Subproject {
         return endDate;
     }
 
-    public void setSubProjectName() {
+    public int getId() {
+        return id;
+    }
+
+    public int getProjectId() {
+        return project_id;
+    }
+
+    // Setters
+    public void setSubprojectName(String subprojectName) {
         this.subprojectName = subprojectName;
     }
 
-    public void setDescription() {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -66,6 +86,14 @@ public class Subproject {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProjectId(int project_id) {
+        this.project_id = project_id;
     }
 
     @Override
