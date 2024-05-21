@@ -35,7 +35,7 @@ import java.util.List;
             subprojectService.createSubproject(subproject);
 
             // Omdiriger brugeren til forsiden for subprojekter
-            return "redirect:/subprojects";
+            return "redirect:/subproject";
         }
 
         @GetMapping("/subproject_frontpage")
@@ -74,7 +74,7 @@ import java.util.List;
         @PostMapping("/deleteSubproject")
         public String deleteSubproject(@RequestParam("subprojectId") int id, Model model) {
             subprojectService.deleteSubproject(id);
-            return "redirect:/subprojects";
+            return "redirect:/subproject";
         }
 
 
