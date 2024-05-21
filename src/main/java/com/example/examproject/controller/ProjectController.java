@@ -38,7 +38,7 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
-    @GetMapping("/project_frontpage")
+   @GetMapping("/project_frontpage")
     public String projectFrontpage(Model model) {
         model.addAttribute("projectObject", new Project());
         return "project_frontpage";
@@ -68,8 +68,14 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
+    @GetMapping("/confirm_delete/{id}")
+    public String confirmDelete(@PathVariable("id") int id, Model model) {
+        model.addAttribute("projectId", id);
+        return "confirm_delete";
+    }
 
-    @PostMapping("/delete_project")
+
+    @PostMapping("/deleteProject")
     public String deleteProject(@RequestParam("projectId") int id, Model model) {
         projectService.deleteProject(id);
         model.addAttribute("project");
@@ -78,3 +84,4 @@ public class ProjectController {
     }
 
 }
+

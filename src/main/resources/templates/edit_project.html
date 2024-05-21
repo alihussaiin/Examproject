@@ -28,11 +28,15 @@
         <input type="date" id="endDate" name="endDate" th:value="${project.endDate}">
 
         <label for="status">Status</label>
-        <input type="text" id="status" name="status" th:value="${project.status}">
+        <select id="status" name="status">
+            <option value="Afventer" th:selected="${project.status == 'Afventer'}">Afventer</option>
+            <option value="Igangsat" th:selected="${project.status == 'Påbegyndt'}">Påbegyndt</option>
+            <option value="Fuldført" th:selected="${project.status == 'Fuldført'}">Fuldført</option>
+        </select>
 
         <div class="button-group">
             <button type="submit" class="btn btn-primary">Gem</button>
-            <a href="/project_frontpage" class="btn btn-primary">Tilbage</a>
+            <a href="/projects" class="btn btn-secondary">Tilbage</a>
         </div>
     </form>
 </div>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Projekt forside</h1>
+    <h1>Dine projekter</h1>
     <nav class="navbar">
         <ul>
             <li class="logud-button">
@@ -50,7 +50,7 @@
                 </form>
             </td>
             <td>
-                <form th:action="@{/delete}" method="post">
+                <form th:action="@{/deleteProject}" method="post">
                     <input type="hidden" name="projectId" th:value="${project.id}">
                     <button class="delete" type="submit">Slet</button>
                 </form>

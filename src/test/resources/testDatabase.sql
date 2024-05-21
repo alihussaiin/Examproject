@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS projectmanager_db_test;
-CREATE DATABASE projectmanager_db_test;
-USE projectmanager_db_test;
+DROP DATABASE IF EXISTS projectmanager_db;
+CREATE DATABASE projectmanager_db;
+USE projectmanager_db;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS project;
