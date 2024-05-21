@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ActiveProfiles("test")
 
 public class UserRepositoryTest {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -40,7 +41,7 @@ public class UserRepositoryTest {
     @Test
     void testFindById() {
         // Arrange
-        int userId = 1; // Assuming this ID exists in your test data
+        int userId = 1;
 
         // Act
         User foundUser = userRepository.findById(userId);
