@@ -40,5 +40,7 @@ CREATE TABLE task (
                       task_id INT PRIMARY KEY AUTO_INCREMENT,
                       subproject_id INT,
                       name VARCHAR(255),
+                      status VARCHAR(255),
+                      priority VARCHAR(255),
                       FOREIGN KEY (subproject_id) REFERENCES subproject(subproject_id)
 );

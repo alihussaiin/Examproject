@@ -33,51 +33,49 @@ label {
     margin-bottom: 20px;
 }
 
+.btn {
+    display: inline-block;
+    width: 48%; /* Justeret bredde for to knapper */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 .btn-primary {
-    width: 100%;
-    display: block;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
+    background-color: #007bff; /* Blå farve for Opret knappen */
     color: #fff;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-cancel {
-    width: 100%;
-    display: block;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #6c757d;
+.btn-secondary {
+    background-color: #6c757d; /* Grå farve for Tilbage knappen */
     color: #fff;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.btn-cancel:hover {
-    background-color: #5a6268;
+.btn:hover {
+    filter: brightness(110%);
 }
 
 .button-group {
-    display: flex;
+    text-align: center; /* Centrer knapperne */
 }
 
-.button-group .btn {
-    flex: 1;
-    margin-left: 5px;
+.registration-form {
+    text-align: center; /* Centrer formen */
+}
+.back {
+    background-color: #FF0000; /* Rød farve */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.button-group .btn:last-child {
-    margin-left: 0;
+.back:hover {
+    background-color: #B22222; /* Mørkere rød farve */
 }

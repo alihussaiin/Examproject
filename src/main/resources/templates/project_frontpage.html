@@ -38,7 +38,7 @@
         <tbody>
         <!-- Her kan du indsætte dynamisk genereret HTML for hver projekt -->
         <tr th:each="project : ${projects}">
-            <td th:text="${project.name}"></td>
+            <td><a th:href="@{/project/{id}(id=${project.id})}" th:text="${project.name}"></a></td>
             <td th:text="${project.description}"></td>
             <td th:text="${project.status}"></td>
             <td th:text="${project.startDate}"></td>
