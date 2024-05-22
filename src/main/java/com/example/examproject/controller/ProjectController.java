@@ -99,11 +99,9 @@ public class ProjectController {
         Project project = projectService.getProjectById(id);
         List<Subproject> subprojects = subprojectService.getAllSubprojects(id);
 
-
         session.setAttribute("currentProjectId", id);
         model.addAttribute("project", project);
         model.addAttribute("subprojects", subprojects);
-
         return "project_details";
     }
 }

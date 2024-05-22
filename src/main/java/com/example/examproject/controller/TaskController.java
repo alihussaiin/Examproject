@@ -18,7 +18,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/create_task")
+    @GetMapping("/create_task/{subProjectId}")
     public String createTaskForm(Model model) {
         model.addAttribute("taskObject", new Task());
         return "create_task";

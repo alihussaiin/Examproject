@@ -19,7 +19,7 @@ import java.util.List;
         }
 
 
-        @GetMapping("/create_subproject")
+        @GetMapping("/create_subproject/{id}")
         public String createSubprojectForm(Model model) {
             model.addAttribute("subprojectObject", new Subproject());
             return "create_subproject";
@@ -30,12 +30,12 @@ import java.util.List;
             // Få projektets ID fra sessionen og tilknyt det til det nye subprojekt
             Integer projectId = (Integer) session.getAttribute("currentProjectId");
             subproject.setProjectId(projectId);
-
+            System.out.println("test");
             // Send subprojektet til subprojektets serviceklasse for at gemme det i databasen
             subprojectService.createSubproject(subproject);
 
             // Omdiriger brugeren til forsiden for subprojekter
-            return "redirect:/subproject";
+            return "redirect:/project_details";
         }
 
         @GetMapping("/subproject_frontpage")
