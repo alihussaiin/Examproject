@@ -18,7 +18,7 @@ import java.util.List;
             this.subprojectService = subprojectService;
         }
 
-        // Opret subprojekt og går hen til stien createSubproject
+
         @GetMapping("/create_subproject")
         public String createSubprojectForm(Model model) {
             model.addAttribute("subprojectObject", new Subproject());

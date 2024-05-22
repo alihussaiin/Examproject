@@ -21,7 +21,6 @@ public class TaskController {
     @GetMapping("/create_task")
     public String createTaskForm(Model model) {
         model.addAttribute("taskObject", new Task());
-
         return "create_task";
     }
 

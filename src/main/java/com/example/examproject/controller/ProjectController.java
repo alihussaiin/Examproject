@@ -1,21 +1,30 @@
 package com.example.examproject.controller;
 import com.example.examproject.model.Project;
+import com.example.examproject.model.Subproject;
+import com.example.examproject.model.Task;
 import com.example.examproject.model.User;
 import com.example.examproject.service.ProjectService;
+import com.example.examproject.service.SubprojectService;
+import com.example.examproject.service.TaskService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ProjectController {
 
+    private final SubprojectService subprojectService;
+    private final TaskService taskService;
     private ProjectService projectService;
 
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, SubprojectService subprojectService, TaskService taskService) {
         this.projectService = projectService;
+        this.subprojectService = subprojectService;
+        this.taskService = taskService;
     }
 
     //opret projekt og går hen til stien createProject
@@ -85,5 +94,18 @@ public class ProjectController {
 
     }
 
+    @GetMapping("/project/{id}")
+    public String viewProjectDetails(@PathVariable("id") int id, Model model, HttpSession session) {
+        Project project = projectService.getProjectById(id);
+        List<Subproject> subprojects = subprojectService.getAllSubprojects(id);
+
+
+        session.setAttribute("currentProjectId", id);
+        model.addAttribute("project", project);
+        model.addAttribute("subprojects", subprojects);
+
+        return "project_details";
+    }
 }
+
 

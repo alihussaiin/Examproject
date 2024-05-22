@@ -17,7 +17,7 @@ public class SubprojectRepository {
     @Value("root")
     private String dbUsername;
 
-    @Value("Dru58tet@")
+    @Value("Kwc52vap2qc#")
     private String dbPassword;
 
     public Subproject createSubproject(Subproject subproject) {
