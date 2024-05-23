@@ -8,35 +8,36 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Create Subproject</h2>
+    <h2>Opret subprojekt</h2>
+
     <form th:action="@{/create_subproject}" th:object="${subprojectObject}" method="post">
         <input type="hidden" name="projectId" th:field="*{project_Id}">
         <div class="form-group">
-            <label for="name">Subproject Name:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter subproject name" required th:field="*{subprojectName}">
+            <label for="name">Navn:</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Indtast navn" required>
         </div>
         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" id="description" name="description" placeholder="Enter description" required th:field="*{description}"></textarea>
+            <label for="description">Beskrivelse:</label>
+            <textarea class="form-control" id="description" th:field="*{description}" placeholder="Indtast beskrivelse" required ></textarea>
         </div>
         <label for="status">Status</label>
-        <select class="form-control" id="status" name="status" required>
-            <option value="Afventer" th:selected="${subprojectObject.status == 'Afventer'}">Afventer</option>
-            <option value="Påbegyndt" th:selected="${subprojectObject.status == 'Påbegyndt'}">Påbegyndt</option>
-            <option value="Fuldført" th:selected="${subprojectObject.status == 'Fuldført'}">Fuldført</option>
+        <select class="form-control" id="status" th:field="*{status}" required>
+            <option value="Afventer">Afventer</option>
+            <option value="Påbegyndt">Påbegyndt</option>
+            <option value="Fuldført">Fuldført</option>
         </select>
 
         <div class="form-group">
-            <label for="startDate">Start Date:</label>
-            <input type="date" class="form-control" id="startDate" name="startDate" required th:value="${subprojectObject.startDate}">
+            <label for="startDate">Start Datp:</label>
+            <input type="date" class="form-control" id="startDate" required th:field="*{startDate}">
         </div>
         <div class="form-group">
-            <label for="endDate">End Date:</label>
-            <input type="date" class="form-control" id="endDate" name="endDate" required th:value="${subprojectObject.endDate}">
+            <label for="endDate">Slut Dato:</label>
+            <input type="date" class="form-control" id="endDate" required th:field="*{endDate}">
         </div>
         <div class="button-group">
-            <button type="submit" class="btn btn-primary">Create Subproject</button>
-            <a href="/" class="btn btn-primary">Back</a>
+            <button type="submit" class="btn btn-primary">Opret Subprojekt</button>
+            <a href="/" class="btn btn-primary">Tilbage</a>
         </div>
     </form>
 </div>

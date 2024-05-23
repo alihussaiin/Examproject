@@ -10,7 +10,7 @@ import java.sql.*;
 @Repository
 public class UserRepository {
 
-    @Value("jdbc:mysql://localhost:3306/ProjectManager_db")
+    @Value("jdbc:mysql://localhost:3306/projectmanager_db")
     private String dbUrl;
 
     @Value("root")
