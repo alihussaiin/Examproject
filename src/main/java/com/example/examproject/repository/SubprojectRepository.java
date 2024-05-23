@@ -21,10 +21,12 @@ public class SubprojectRepository {
     private String dbPassword;
 
     public Subproject createSubproject(Subproject subproject) {
-        Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
         String SQL = "INSERT INTO project (subprojectName, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?)";
+        System.out.println("test3");
 
-        try (PreparedStatement ps = conn.prepareStatement(SQL)) {
+        try (Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement ps = conn.prepareStatement(SQL)) {
+
             ps.setString(1, subproject.getSubprojectName());
             ps.setString(2, subproject.getDescription());
             ps.setString(3, subproject.getStatus());
@@ -37,9 +39,11 @@ public class SubprojectRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            // Håndter fejlen passende
         }
         return subproject;
     }
+
 
     public ArrayList<Subproject> getAllSubprojects(int projectId) {
         ArrayList<Subproject> subprojects = new ArrayList<>();

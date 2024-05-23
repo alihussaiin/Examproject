@@ -30,7 +30,6 @@ import java.util.List;
             // Få projektets ID fra sessionen og tilknyt det til det nye subprojekt
             Integer projectId = (Integer) session.getAttribute("currentProjectId");
             subproject.setProjectId(projectId);
-            System.out.println("test");
             // Send subprojektet til subprojektets serviceklasse for at gemme det i databasen
             subprojectService.createSubproject(subproject);
 
