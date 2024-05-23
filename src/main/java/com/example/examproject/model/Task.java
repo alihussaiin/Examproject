@@ -1,9 +1,10 @@
 package com.example.examproject.model;
 
 public class Task {
-    private String descriptions;
+    private String description;
     private String status;
     private String priority;
+    private int estimatedTime;
     private int id;
     private int subProject_Id;
 
@@ -12,27 +13,29 @@ public class Task {
     public Task() {
     }
 
-    public Task (String descriptions, String status, String priority, int id) {
-        this.descriptions = descriptions;
+    public Task (String description, String status, String priority, int estimatedTime, int id) {
+        this.description = description;
         this.status = status;
         this.priority = priority;
+        this.estimatedTime = estimatedTime;
         this.id = id;
     }
 
-    public Task (String descriptions, String status, String priority, int id, int subProject_Id) {
-        this.descriptions = descriptions;
+    public Task (String description, String status, String priority, int estimatedTime, int id, int subProject_Id) {
+        this.description = description;
         this.status = status;
         this.priority = priority;
+        this.estimatedTime = estimatedTime;
         this.id = id;
         this.subProject_Id = subProject_Id;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
@@ -65,5 +68,24 @@ public class Task {
 
     public void setSubProject_Id(int subProject_Id) {
         this.subProject_Id = subProject_Id;
+    }
+    public int getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    public void setEstimatedTime(int estimatedTime) {
+        this.estimatedTime = estimatedTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", priority='" + priority + '\'' +
+                ", estimatedTime=" + estimatedTime +
+                ", id=" + id +
+                ", subProject_Id=" + subProject_Id +
+                '}';
     }
 }

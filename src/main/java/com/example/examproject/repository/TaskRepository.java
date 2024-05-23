@@ -22,13 +22,14 @@ public class TaskRepository {
 
     public Task createTask(Task task) {
         Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-        String SQL = "INSERT INTO task (subProject_id, taskName, status, priority) VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO task (subProject_id, description, status, priority, estimated_time) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, task.getSubProject_Id());
-            ps.setString(2, task.getDescriptions());
+            ps.setString(2, task.getDescription());
             ps.setString(3, task.getStatus());
             ps.setString(4, task.getPriority());
+            ps.setInt(5, task.getEstimatedTime());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
@@ -42,43 +43,27 @@ public class TaskRepository {
 
     public ArrayList<Task> getAllTasks(int subProjectId) {
         ArrayList<Task> tasks = new ArrayList<>();
-        String SQL = "SELECT * FROM task WHERE sub_project_id = ?";
-        Connection conn = null;
+        String SQL = "SELECT * FROM task WHERE subproject_id = ?";
+       Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
-        try {
-            conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-            ps = conn.prepareStatement(SQL);
+        try {ps = conn.prepareStatement(SQL);
             ps.setInt(1, subProjectId);
             resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
                 Task task = new Task();
                 task.setId(resultSet.getInt("ID"));
-                task.setSubProject_Id(resultSet.getInt("SUB_PROJECT_ID"));
-                task.setDescriptions(resultSet.getString("TASK_NAME"));
+                task.setSubProject_Id(resultSet.getInt("SUBPROJECT_ID"));
+                task.setDescription(resultSet.getString("DESCRIPTION"));
                 task.setStatus(resultSet.getString("STATUS"));
                 task.setPriority(resultSet.getString("PRIORITY"));
+                task.setEstimatedTime(resultSet.getInt("ESTIMATED_TIME"));
                 tasks.add(task);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Fejl ved hentning af opgaver fra databasen", e);
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
         return tasks;
@@ -89,13 +74,14 @@ public class TaskRepository {
         PreparedStatement ps = null;
         try {
             conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-            String SQL = "UPDATE task SET TASK_NAME=?, STATUS=?, PRIORITY=? WHERE ID=?";
+            String SQL = "UPDATE task SET DESCRIPTION=?, STATUS=?, PRIORITY=?, ESTIMATED_TIME=? WHERE ID=?";
             ps = conn.prepareStatement(SQL);
 
-            ps.setString(1, task.getDescriptions());
+            ps.setString(1, task.getDescription());
             ps.setString(2, task.getStatus());
             ps.setString(3, task.getPriority());
-            ps.setInt(4, task.getId());
+            ps.setInt(4, task.getEstimatedTime());
+            ps.setInt(5, task.getId());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
@@ -156,9 +142,10 @@ public class TaskRepository {
                 task = new Task();
                 task.setId(resultSet.getInt("ID"));
                 task.setSubProject_Id(resultSet.getInt("SUB_PROJECT_ID"));
-                task.setDescriptions(resultSet.getString("TASK_NAME"));
+                task.setDescription(resultSet.getString("TASK_NAME"));
                 task.setStatus(resultSet.getString("STATUS"));
                 task.setPriority(resultSet.getString("PRIORITY"));
+                task.setEstimatedTime(resultSet.getInt("ESTIMATED_TIME"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

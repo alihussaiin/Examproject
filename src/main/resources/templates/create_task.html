@@ -8,23 +8,33 @@
 </head>
 <body>
 <div class="container">
-    <h1>Create Task</h1>
+    <h1>Opret opgave</h1>
+
     <form th:action="@{/create_task}" th:object="${taskObject}" method="post">
-        <input type="hidden" name="subProjectId" value="${subProjectId}">
+        <input type="hidden" name="subProjectId" th:value="${subProjectId}">
         <div class="form-group">
-            <label for="taskName">Task Name:</label>
-            <input type="text" id="taskName" name="taskName" required>
+            <label for="description">Beskrivelse:</label>
+            <input type="text" id="description" required th:field="*{description}">
+        </div>
+
+        <label for="status">Status</label>
+        <select class="form-control" id="status" th:field="*{status}" required>
+            <option value="Afventer">Afventer</option>
+            <option value="Påbegyndt">Påbegyndt</option>
+            <option value="Fuldført">Fuldført</option>
+        </select>
+        <label for="Priority">Prioritet</label>
+        <select class="form-control" id="Priority" th:field="*{status}" required>
+            <option value="Lav">Lav</option>
+            <option value="Middel">Middel</option>
+            <option value="Høj">Høj</option>
+        </select>
+        <div class="form-group">
+            <label for="estimatedTime">Estimeret timer (Timer):</label>
+            <input type="number" id="estimatedTime"  required th:field="*{estimatedTime}">
         </div>
         <div class="form-group">
-            <label for="status">Status:</label>
-            <input type="text" id="status" name="status" required>
-        </div>
-        <div class="form-group">
-            <label for="priority">Priority:</label>
-            <input type="text" id="priority" name="priority" required>
-        </div>
-        <div class="form-group">
-            <button type="submit">Create Task</button>
+            <button type="submit">Opret opgave</button>
         </div>
     </form>
 </div>

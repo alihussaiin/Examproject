@@ -74,10 +74,10 @@
         <thead>
         <tr>
             <th></th>
-            <th>Navn</th>
             <th>Beskrivelse</th>
             <th>Status</th>
             <th>Prioritet</th>
+            <th>Estimeret timer</th>
             <th>Rediger</th>
             <th>Slet</th>
         </tr>
@@ -87,6 +87,7 @@
             <td th:text="${task.description}"></td>
             <td th:text="${task.status}"></td>
             <td th:text="${task.priority}"></td>
+            <td th:text="${task.estimatedTime}"></td>
             <td>
                 <form th:action="@{/edit_task/{id}(id=${task.id})}" method="get">
                     <input type="hidden" name="taskId" th:value="${task.id}">
