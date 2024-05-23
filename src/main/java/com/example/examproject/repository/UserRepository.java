@@ -10,7 +10,7 @@ import java.sql.*;
 @Repository
 public class UserRepository {
 
-    @Value("jdbc:mysql://localhost:3306/projectmanager_db")
+    @Value("jdbc:mysql://localhost:3306/ProjectManager_db")
     private String dbUrl;
 
     @Value("root")
@@ -28,7 +28,7 @@ public class UserRepository {
                 ps.setInt(1, user.getid());
                 ps.setString(2, user.getFirstname());
                 ps.setString(3, user.getUsername());
-                ps.setString(4, user.getPassword()); // Sætter ID-værdien
+                ps.setInt(4, user.getPassword()); // Sætter ID-værdien
 
                 ps.executeUpdate();
             }

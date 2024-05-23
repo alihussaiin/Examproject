@@ -12,7 +12,7 @@ import java.util.ArrayList;
     public class ProjectRepository {
 
 
-        @Value("jdbc:mysql://localhost:3306/projectmanager_db_test")
+        @Value("jdbc:mysql://localhost:3306/projectmanager_db")
         private String dbUrl;
 
         @Value("root")
@@ -118,6 +118,7 @@ import java.util.ArrayList;
             }
             return project; // Returnér det opdaterede projekt
         }
+
 
 
         public void deleteProject(int projectId) {
