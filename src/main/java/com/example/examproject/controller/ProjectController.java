@@ -17,8 +17,8 @@ import java.util.List;
 @Controller
 public class ProjectController {
 
-    private final SubprojectService subprojectService;
-    private final TaskService taskService;
+    private SubprojectService subprojectService;
+    private TaskService taskService;
     private ProjectService projectService;
 
     public ProjectController(ProjectService projectService, SubprojectService subprojectService, TaskService taskService) {
@@ -37,12 +37,10 @@ public class ProjectController {
     @PostMapping("/create_project")
     public String createProject(@ModelAttribute Project project, HttpSession session) {
         // Få brugerens ID fra sessionen og tilknyt det til det nye projekt
-
         User user = (User) session.getAttribute("loggedInUser");
         project.setUsers_id(user.getid());
         // Send projektet til projektets serviceklasse for at gemme det i databasen
         projectService.createProject(project);
-
         // Omdiriger brugeren til forsiden for projekter
         return "redirect:/projects";
     }
@@ -79,8 +77,6 @@ public class ProjectController {
 
     @GetMapping("/confirm_delete/{id}")
     public String confirmDelete(@PathVariable("id") int id, Model model) {
-        //subproject
-        //task
         model.addAttribute("projectId", id);
         return "confirm_delete";
     }
@@ -98,10 +94,13 @@ public class ProjectController {
     public String viewProjectDetails(@PathVariable("id") int id, Model model, HttpSession session) {
         Project project = projectService.getProjectById(id);
         List<Subproject> subprojects = subprojectService.getAllSubprojects(id);
+        Task task = taskService.getTaskById(id);
+
 
         session.setAttribute("currentProjectId", id);
         model.addAttribute("project", project);
         model.addAttribute("subprojects", subprojects);
+        model.addAttribute("task", task);
         return "project_details";
     }
 }

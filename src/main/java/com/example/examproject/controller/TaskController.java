@@ -30,8 +30,9 @@ public class TaskController {
         Integer subProjectId = (Integer) session.getAttribute("subProjectId");
 
         task.setSubProject_Id(subProjectId);
+        System.out.println(subProjectId);
         taskService.createTask(task);
-        return "redirect:/project_details/";
+        return "redirect:/project_details/" + session.getAttribute("currentProjectId");
     }
 
     @GetMapping("/tasks/{subProjectId}")

@@ -22,7 +22,7 @@ public class TaskRepository {
 
     public Task createTask(Task task) {
         Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-        String SQL = "INSERT INTO task (subProject_id, description, status, priority, estimated_time) VALUES (?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO task (subproject_id, description, status, priority, estimated_time) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, task.getSubProject_Id());
@@ -141,8 +141,8 @@ public class TaskRepository {
             if (resultSet.next()) {
                 task = new Task();
                 task.setId(resultSet.getInt("ID"));
-                task.setSubProject_Id(resultSet.getInt("SUB_PROJECT_ID"));
-                task.setDescription(resultSet.getString("TASK_NAME"));
+                task.setSubProject_Id(resultSet.getInt("SUBPROJECT_ID"));
+                task.setDescription(resultSet.getString("DESCRIPTION"));
                 task.setStatus(resultSet.getString("STATUS"));
                 task.setPriority(resultSet.getString("PRIORITY"));
                 task.setEstimatedTime(resultSet.getInt("ESTIMATED_TIME"));

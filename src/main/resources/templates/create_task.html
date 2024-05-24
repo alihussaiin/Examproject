@@ -11,30 +11,38 @@
     <h1>Opret opgave</h1>
 
     <form th:action="@{/create_task}" th:object="${taskObject}" method="post">
-        <input type="hidden" name="subProjectId" th:value="${subProjectId}">
+        <input type="hidden" th:field="*{subProject_Id}" th:value="${session.subProjectId}">
         <div class="form-group">
             <label for="description">Beskrivelse:</label>
-            <input type="text" id="description" required th:field="*{description}">
+            <input type="text" id="description" th:field="*{description}" required>
         </div>
 
-        <label for="status">Status</label>
-        <select class="form-control" id="status" th:field="*{status}" required>
-            <option value="Afventer">Afventer</option>
-            <option value="Påbegyndt">Påbegyndt</option>
-            <option value="Fuldført">Fuldført</option>
-        </select>
-        <label for="Priority">Prioritet</label>
-        <select class="form-control" id="Priority" th:field="*{status}" required>
-            <option value="Lav">Lav</option>
-            <option value="Middel">Middel</option>
-            <option value="Høj">Høj</option>
-        </select>
         <div class="form-group">
-            <label for="estimatedTime">Estimeret timer (Timer):</label>
-            <input type="number" id="estimatedTime"  required th:field="*{estimatedTime}">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" th:field="*{status}" required>
+                <option value="Afventer">Afventer</option>
+                <option value="Påbegyndt">Påbegyndt</option>
+                <option value="Fuldført">Fuldført</option>
+            </select>
         </div>
+
+        <div class="form-group">
+            <label for="priority">Prioritet</label>
+            <select class="form-control" id="priority" th:field="*{priority}" required>
+                <option value="Lav">Lav</option>
+                <option value="Middel">Middel</option>
+                <option value="Høj">Høj</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="estimatedTime">Estimeret tid (Timer):</label>
+            <input type="number" id="estimatedTime" th:field="*{estimatedTime}" required>
+        </div>
+
         <div class="form-group">
             <button type="submit">Opret opgave</button>
+            <a th:href="@{/project/{projectId}(projectId=${session.currentProjectId})}" class="btn btn-primary">Tilbage</a>
         </div>
     </form>
 </div>
