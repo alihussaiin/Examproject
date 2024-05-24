@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Subproject {
     private int id;
     private int project_Id;
-    private String subprojectName;
+    private String name;
     private String description;
     private String status;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -15,9 +15,9 @@ public class Subproject {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    public Subproject (String subprojectName, String description, String status, LocalDate startDate, LocalDate endDate, int id, int project_Id) {
+    public Subproject (String name, String description, String status, LocalDate startDate, LocalDate endDate, int id, int project_Id) {
 
-        this.subprojectName = subprojectName;
+        this.name = name;
         this.description = description;
         this.status = status;
         this.startDate = startDate;
@@ -38,8 +38,8 @@ public class Subproject {
         return project_Id;
     }
 
-    public String getSubprojectName() {
-        return subprojectName;
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
@@ -66,8 +66,8 @@ public class Subproject {
         this.project_Id = project_Id;
     }
 
-    public void setSubprojectName(String subprojectName) {
-        this.subprojectName = subprojectName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDescription(String description) {
@@ -91,7 +91,7 @@ public class Subproject {
         return "Subproject{" +
                 "id=" + id +
                 ", project_Id=" + project_Id +
-                ", subprojectName='" + subprojectName + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", startDate=" + startDate +

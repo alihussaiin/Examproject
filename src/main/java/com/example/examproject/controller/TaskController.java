@@ -18,18 +18,21 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/create_task")
-    public String createTaskForm(Model model) {
+    @GetMapping("/create_task/{subProjectId}")
+    public String createTaskForm(@PathVariable("subProjectId") int subProjectId, Model model, HttpSession session) {
         model.addAttribute("taskObject", new Task());
+        session.setAttribute("subProjectId", subProjectId); // Ensure subProjectId is in session
         return "create_task";
     }
 
     @PostMapping("/create_task")
     public String createTask(@ModelAttribute Task task, HttpSession session) {
-        int subProjectId = (int) session.getAttribute("subProjectId");
+        Integer subProjectId = (Integer) session.getAttribute("subProjectId");
+
         task.setSubProject_Id(subProjectId);
+        System.out.println(subProjectId);
         taskService.createTask(task);
-        return "redirect:/subproject/" + subProjectId;
+        return "redirect:/project_details/" + session.getAttribute("currentProjectId");
     }
 
     @GetMapping("/tasks/{subProjectId}")
@@ -37,7 +40,7 @@ public class TaskController {
         List<Task> tasks = taskService.getAllTasks(subProjectId);
         model.addAttribute("tasks", tasks);
         model.addAttribute("subProjectId", subProjectId);
-        return "task_list";
+        return "project_details";
     }
 
     @GetMapping("/edit_task/{id}")
@@ -54,7 +57,7 @@ public class TaskController {
     }
 
     @PostMapping("/deleteTask")
-    public String deleteTask(@RequestParam("taskId") int id, @RequestParam("subProjectId") int subProjectId ) {
+    public String deleteTask(@RequestParam("taskId") int id, @RequestParam("subProjectId") int subProjectId) {
         taskService.deleteTask(id);
         return "redirect:/subproject/" + subProjectId;
     }
