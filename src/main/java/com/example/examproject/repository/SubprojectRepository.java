@@ -17,13 +17,13 @@ public class SubprojectRepository {
     @Value("root")
     private String dbUsername;
     // - problemer med at opsætte connection ->
-    @Value("Kwc52vap2qc#")
+    @Value("Dru58tet@")
     private String dbPassword;
 
     public Subproject createSubproject(Subproject subproject) {
         Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
         String SQL = "INSERT INTO subproject (project_id, name, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?)";
-        System.out.println(subproject.getName());
+
 
         try (PreparedStatement ps = conn.prepareStatement(SQL)) {
             ps.setInt(1, subproject.getProject_Id());

@@ -17,7 +17,7 @@ public class UserRepository {
     private String dbUsername;
 
 
-    @Value("Kwc52vap2qc#")
+    @Value("Dru58tet@")
     private String dbPassword;
 
 

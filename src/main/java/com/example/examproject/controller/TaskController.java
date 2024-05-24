@@ -35,7 +35,7 @@ public class TaskController {
         return "redirect:/project_details/" + session.getAttribute("currentProjectId");
     }
 
-    @GetMapping("/tasks/{subProjectId}")
+    @GetMapping("/project_details/{subProjectId}")
     public String getAllTasks(@PathVariable("subProjectId") int subProjectId, Model model) {
         List<Task> tasks = taskService.getAllTasks(subProjectId);
         model.addAttribute("tasks", tasks);
