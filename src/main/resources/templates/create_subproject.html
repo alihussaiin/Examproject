@@ -11,7 +11,7 @@
     <h2>Opret subprojekt</h2>
 
     <form th:action="@{/create_subproject}" th:object="${subprojectObject}" method="post">
-        <input type="hidden" th:field="*{project_Id}" th:value="${session.currentProjectId}">
+        <input type="hidden" th:field="*{project_Id}" th:value="${currentProjectId}">
         <div class="form-group">
             <label for="name">Navn:</label>
             <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Indtast navn" required>

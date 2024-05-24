@@ -14,6 +14,7 @@ import java.util.List;
 
         private SubprojectService subprojectService;
 
+
         public SubprojectController(SubprojectService subprojectService) {
             this.subprojectService = subprojectService;
         }
@@ -28,7 +29,29 @@ import java.util.List;
         }
 
 
+
         @PostMapping("/create_subproject")
+        public String createSubproject(@ModelAttribute Subproject subproject, HttpSession session) {
+            Integer projectId = (Integer) session.getAttribute("currentProjectId");
+            if (projectId == null) {
+                throw new IllegalStateException("No project ID found in session");
+            }
+            subproject.setProjectId(projectId);
+            subprojectService.createSubproject(subproject);
+            return "redirect:/project/" + projectId;
+        }
+
+
+        /*@PostMapping("/createSubProject")
+        public String createSubProject(@ModelAttribute("subprojectObject") Subproject subproject, HttpSession session) {
+            Integer projectId = (Integer) session.getAttribute("currentProjectId");
+            subproject.setProjectId(projectId); // Sørg for, at projekt-ID'et er indstillet
+            subprojectService.createSubproject(subproject);
+            return "redirect:/project_details/" + projectId;
+        }*/
+
+
+        /*@PostMapping("/create_subproject")
         public String createSubproject( @ModelAttribute  Subproject subproject, HttpSession session) {
             // Få projektets ID fra sessionen og tilknyt det til det nye subprojekt
             Integer projectId = (Integer) session.getAttribute("currentProjectId");
@@ -40,7 +63,7 @@ import java.util.List;
 
             // Omdiriger brugeren til forsiden for subprojekter
             return "redirect:/project_details/{projectId}";
-        }
+        }*/
 
 
         @GetMapping("/project_details/{projectId}")
