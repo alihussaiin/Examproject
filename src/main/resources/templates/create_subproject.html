@@ -7,32 +7,38 @@
     <link rel="stylesheet" href="/create_subproject.css">
 </head>
 <body>
-<div class="container">
-    <h1>Create Subproject</h1>
+<div class="container mt-5">
+    <h2>Opret subprojekt</h2>
+
     <form th:action="@{/create_subproject}" th:object="${subprojectObject}" method="post">
-        <input type="hidden" name="projectId" value="${projectId}">
+        <input type="hidden" th:field="*{project_Id}" th:value="${currentProjectId}">
         <div class="form-group">
-            <label for="name">Subproject Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="name">Navn:</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Indtast navn" required>
         </div>
         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
+            <label for="description">Beskrivelse:</label>
+            <textarea class="form-control" id="description" th:field="*{description}" placeholder="Indtast beskrivelse" required></textarea>
         </div>
         <div class="form-group">
-            <label for="status">Status:</label>
-            <input type="text" id="status" name="status" required>
+            <label for="status">Status</label>
+            <select class="form-control" id="status" th:field="*{status}" required>
+                <option value="Afventer">Afventer</option>
+                <option value="Påbegyndt">Påbegyndt</option>
+                <option value="Fuldført">Fuldført</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" name="startDate" required>
+            <label for="startDate">Start Dato:</label>
+            <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required>
         </div>
         <div class="form-group">
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" name="endDate" required>
+            <label for="endDate">Slut Dato:</label>
+            <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
         </div>
-        <div class="form-group">
-            <button type="submit">Create Subproject</button>
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Opret Subprojekt</button>
+            <a th:href="@{/project/{projectId}(projectId=${session.currentProjectId})}" class="btn btn-primary">Tilbage</a>
         </div>
     </form>
 </div>

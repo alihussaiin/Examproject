@@ -11,25 +11,27 @@ import java.util.ArrayList;
 @Repository
 public class SubprojectRepository {
 
-    @Value("jdbc:mysql://localhost:3306/ProjectManager_db")
+    @Value("jdbc:mysql://localhost:3306/projectmanager_db")
     private String dbUrl;
 
     @Value("root")
     private String dbUsername;
-
-    @Value("Kwc52vap2qc#")
+    // - problemer med at opsætte connection ->
+    @Value("Dru58tet@")
     private String dbPassword;
 
     public Subproject createSubproject(Subproject subproject) {
         Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-        String SQL = "INSERT INTO project (subprojectName, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO subproject (project_id, name, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?)";
+
 
         try (PreparedStatement ps = conn.prepareStatement(SQL)) {
-            ps.setString(1, subproject.getSubprojectName());
-            ps.setString(2, subproject.getDescription());
-            ps.setString(3, subproject.getStatus());
-            ps.setDate(4, Date.valueOf(subproject.getStartDate()));
-            ps.setDate(5, Date.valueOf(subproject.getEndDate()));
+            ps.setInt(1, subproject.getProject_Id());
+            ps.setString(2, subproject.getName());
+            ps.setString(3, subproject.getDescription());
+            ps.setString(4, subproject.getStatus());
+            ps.setDate(5, Date.valueOf(subproject.getStartDate()));
+            ps.setDate(6, Date.valueOf(subproject.getEndDate()));
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
@@ -41,16 +43,15 @@ public class SubprojectRepository {
         return subproject;
     }
 
+
     public ArrayList<Subproject> getAllSubprojects(int projectId) {
         ArrayList<Subproject> subprojects = new ArrayList<>();
         String SQL = "SELECT * FROM subproject WHERE project_id = ?";
-        Connection conn = null;
+        Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
-        try {
-            conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-            ps = conn.prepareStatement(SQL);
+        try {ps = conn.prepareStatement(SQL);
             ps.setInt(1, projectId);
             resultSet = ps.executeQuery();
 
@@ -58,7 +59,7 @@ public class SubprojectRepository {
                 Subproject subproject = new Subproject();
                 subproject.setId(resultSet.getInt("ID"));
                 subproject.setProjectId(resultSet.getInt("PROJECT_ID"));
-                subproject.setSubprojectName(resultSet.getString("SUBPROJECT_NAME"));
+                subproject.setName(resultSet.getString("NAME"));
                 subproject.setDescription(resultSet.getString("DESCRIPTION"));
                 subproject.setStatus(resultSet.getString("STATUS"));
                 subproject.setStartDate(resultSet.getDate("START_DATE").toLocalDate());
@@ -67,41 +68,21 @@ public class SubprojectRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Fejl ved hentning af subprojekter fra databasen", e);
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return subprojects;
     }
+
+
 
     public Subproject updateSubproject(Subproject subproject) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-            String SQL = "UPDATE subproject SET subproject_name=?, description=?, status=?, start_date=?, end_date=? WHERE ID=?";
+            String SQL = "UPDATE subproject SET name=?, description=?, status=?, start_date=?, end_date=? WHERE ID=?";
             ps = conn.prepareStatement(SQL);
 
-            ps.setString(1, subproject.getSubprojectName());
+            ps.setString(1, subproject.getName());
             ps.setString(2, subproject.getDescription());
             ps.setString(3, subproject.getStatus());
             ps.setDate(4, Date.valueOf(subproject.getStartDate()));
@@ -180,7 +161,7 @@ public class SubprojectRepository {
             if (resultSet.next()) {
                 subproject = new Subproject();
                 subproject.setId(resultSet.getInt("ID"));
-                subproject.setSubprojectName(resultSet.getString("SUBPROJECT_NAME"));
+                subproject.setName(resultSet.getString("NAME"));
                 subproject.setDescription(resultSet.getString("DESCRIPTION"));
                 subproject.setStatus(resultSet.getString("STATUS"));
                 subproject.setStartDate(resultSet.getDate("START_DATE").toLocalDate());
