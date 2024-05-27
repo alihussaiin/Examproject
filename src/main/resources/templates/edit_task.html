@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Task</title>
+    <title>Rediger opgave</title>
     <link rel="stylesheet" href="/edit_task.css">
 </head>
 <body>
 <div class="container">
-    <h1>Redgider opgave</h1>
+    <h1>Rediger opgave</h1>
     <form th:action="@{/edit_task/{subProject_Id}(task.id})}" method="post" th:object="${task}">
         <input type="hidden" name="id" th:value="${task.id}">
         <input type="hidden" name="subProjectId" th:value="${task.subProjectId}">
@@ -21,11 +21,11 @@
             <input type="text" id="status" name="status" th:value="${task.status}" required>
         </div>
         <div class="form-group">
-            <label for="priority">Priority:</label>
+            <label for="priority">Prioritet:</label>
             <input type="text" id="priority" name="priority" th:value="${task.priority}" required>
         </div>
         <div class="form-group">
-            <button type="submit">Update Task</button>
+            <button type="submit">Opdater</button>
         </div>
     </form>
 </div>

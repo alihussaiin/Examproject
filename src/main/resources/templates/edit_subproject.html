@@ -27,9 +27,9 @@
 
         <label for="status">Status:</label>
         <select id="status" name="status">
-            <option value="Pending" th:selected="${subproject.status == 'Pending'}">Pending</option>
-            <option value="In Progress" th:selected="${subproject.status == 'In Progress'}">In Progress</option>
-            <option value="Completed" th:selected="${subproject.status == 'Completed'}">Completed</option>
+            <option value="Afventer" th:selected="${subproject.status == 'Afventer'}">Pending</option>
+            <option value="Påbegyndt" th:selected="${subproject.status == 'In Progress'}">Påbegyndt</option>
+            <option value="Fuldført" th:selected="${subproject.status == 'Fuldført'}">Completed</option>
         </select>
 
         <div class="button-group">

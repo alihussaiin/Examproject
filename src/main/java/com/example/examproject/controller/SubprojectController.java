@@ -29,50 +29,25 @@ import java.util.List;
         }
 
 
-
         @PostMapping("/create_subproject")
         public String createSubproject(@ModelAttribute Subproject subproject, HttpSession session) {
             Integer projectId = (Integer) session.getAttribute("currentProjectId");
-            if (projectId == null) {
-                throw new IllegalStateException("No project ID found in session");
-            }
             subproject.setProjectId(projectId);
             subprojectService.createSubproject(subproject);
             return "redirect:/project/" + projectId;
         }
 
 
-        /*@PostMapping("/createSubProject")
-        public String createSubProject(@ModelAttribute("subprojectObject") Subproject subproject, HttpSession session) {
-            Integer projectId = (Integer) session.getAttribute("currentProjectId");
-            subproject.setProjectId(projectId); // Sørg for, at projekt-ID'et er indstillet
-            subprojectService.createSubproject(subproject);
-            return "redirect:/project_details/" + projectId;
-        }*/
-
-
-        /*@PostMapping("/create_subproject")
-        public String createSubproject( @ModelAttribute  Subproject subproject, HttpSession session) {
-            // Få projektets ID fra sessionen og tilknyt det til det nye subprojekt
-            Integer projectId = (Integer) session.getAttribute("currentProjectId");
-
-            subproject.setProjectId(projectId);
-
-            // Send subprojektet til subprojektets serviceklasse for at gemme det i databasen
-            subprojectService.createSubproject(subproject);
-
-            // Omdiriger brugeren til forsiden for subprojekter
-            return "redirect:/project_details/{projectId}";
-        }*/
-
-
-        @GetMapping("/project_details/{projectId}")
+        @GetMapping("/subprojects/{projectId}")
         public String getAllSubprojects(@PathVariable("projectId") int projectId, Model model, HttpSession session) {
-            session.setAttribute("currentProjectId", projectId); // Set projectId in session
+            model.addAttribute("id", projectId);
+            session.setAttribute("currentProjectId", projectId);
+            System.out.println(projectId);// Set projectId in session
             List<Subproject> subprojects = subprojectService.getAllSubprojects(projectId);
             model.addAttribute("subprojects", subprojects);
-            return "project_details";
+            return "subprojects";
         }
+
 
         @GetMapping("/edit_subproject/{id}")
         public String showEditSubprojectForm(@PathVariable("id") int id, Model model) {
@@ -87,22 +62,19 @@ import java.util.List;
             return "redirect:/subprojects";
         }
 
-        @GetMapping("/confirm_delete_subproject/{id}")
-        public String confirmDeleteSubproject(@PathVariable("id") int id, Model model) {
-            model.addAttribute("subprojectId", id);
+        @GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")
+        public String confirmDeleteSubproject(@PathVariable("subprojectId") int subprojectId, @PathVariable("projectId") int projectId, Model model) {
+            Subproject subproject = subprojectService.getSubprojectById(subprojectId);
+            model.addAttribute("subprojectId", subprojectId);
+            model.addAttribute("projectId", projectId);
+            System.out.println(subprojectId + " " + projectId);
             return "confirm_delete_subproject";
         }
 
         @PostMapping("/deleteSubproject")
-        public String deleteSubproject(@RequestParam("subprojectId") int id, Model model) {
-            subprojectService.deleteSubproject(id);
-            return "redirect:/subproject";
+        public String deleteSubproject(@RequestParam("subprojectId") int subprojectId, @RequestParam("projectId") int projectId) {
+            System.out.println("subprojectId" + projectId);
+            subprojectService.deleteSubproject(subprojectId);
+            return "redirect:/subprojects/" + projectId;
         }
-
-
-
-
-
-
-
     }

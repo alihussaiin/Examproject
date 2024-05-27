@@ -74,11 +74,11 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, WebRequest request, Model model) {
+    public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
         // Kontroller, om brugeren findes i databasen
         User validatedUser = userService.findbyUsername(user.getUsername());
-        request.setAttribute("loggedInUser", validatedUser, WebRequest.SCOPE_SESSION);
-
+        //request.setAttribute("loggedInUser", validatedUser, WebRequest.SCOPE_SESSION);
+        session.setAttribute("loggedInUser", validatedUser);
         if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
             // Brugeren er fundet i databasen og adgangskoden matcher
             // Gem brugeren i sessionen i 1800 sekunder
