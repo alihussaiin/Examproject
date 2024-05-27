@@ -34,11 +34,11 @@ public class TaskController {
     }
 
 
-    @GetMapping("/tasks/{subProjectId}")
-    public String getAllTasks(@PathVariable("subProjectId") int subProjectId, Model model) {
-        List<Task> tasks = taskService.getAllTasks(subProjectId);
+    @GetMapping("/tasks/{subprojectId}")
+    public String getAllTasks(@PathVariable("subprojectId") int subprojectId, Model model) {
+        List<Task> tasks = taskService.getAllTasks(subprojectId);
         model.addAttribute("tasks", tasks);
-        model.addAttribute("subProjectId", subProjectId);
+        model.addAttribute("subprojectId", subprojectId);
         return "tasks";
     }
 
@@ -46,11 +46,11 @@ public class TaskController {
     public String showEditTaskForm(@PathVariable("id") int id, Model model) {
         Task task = taskService.getTaskById(id);
         model.addAttribute("task", task);
-        return "tasks";
+        return "edit_task";
     }
 
     @PostMapping("/edit_task/{id}")
-    public String updateTask(Task task) {
+    public String updateTask(@PathVariable ("id") Task task) {
         taskService.updateTask(task);
         return "redirect:/tasks/" + task.getSubProject_Id();
     }

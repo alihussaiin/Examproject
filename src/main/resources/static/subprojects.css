@@ -1,4 +1,4 @@
-body {
+.body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -85,8 +85,8 @@ table tr:hover {
     background-color: #f1f1f1;
 }
 
-.edit, .delete {
-    background-color: skyblue;
+.edit {
+    background-color: #ffc107; /* Gul farve */
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -96,6 +96,21 @@ table tr:hover {
     cursor: pointer;
 }
 
-.edit:hover, .delete:hover {
-    background-color: #0056b3;
+.edit:hover {
+    background-color: #e0a800; /* Mørkere gul ved hover */
+}
+
+.delete {
+    background-color: #dc3545; /* Rød farve */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: #c82333; /* Mørkere rød ved hover */
 }

@@ -36,7 +36,6 @@
         </tr>
         </thead>
         <tbody>
-
         <tr th:each="subproject : ${subprojects}">
             <td>
                 <a th:href="@{/tasks/{subprojectId}(subprojectId=${subproject.id})}" th:text="${subproject.name}"></a>
@@ -51,11 +50,9 @@
                 </form>
             </td>
             <td>
-
                 <form th:action="@{'/confirm_delete_subproject/' + ${subproject.id} + '/' + ${id}}" method="get">
-                    <button type="submit" class="btn delete">Slet</button>
+                    <button type="submit" class="delete">Slet</button>
                 </form>
-
             </td>
         </tr>
         </tbody>

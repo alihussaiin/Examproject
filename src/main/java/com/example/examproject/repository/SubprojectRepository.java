@@ -113,6 +113,7 @@ public class SubprojectRepository {
                 throw new SQLException("Deleting subproject failed, no rows affected.");
             }
         } catch (SQLException e) {
+            System.out.println("Fejl ved sletning af subprojekt");
             throw new RuntimeException(e);
         } finally {
             if (ps != null) {
