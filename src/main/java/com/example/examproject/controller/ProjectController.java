@@ -78,7 +78,7 @@ public class ProjectController {
     @GetMapping("/confirm_delete/{id}")
     public String confirmDelete(@PathVariable("id") int id, Model model) {
         model.addAttribute("projectId", id);
-        return "confirm_delete";
+        return "confirm_delete.";
     }
 
 
@@ -101,7 +101,7 @@ public class ProjectController {
         model.addAttribute("project", project);
         model.addAttribute("subprojects", subprojects);
         model.addAttribute("task", task);
-        return "project_details";
+        return "subprojects";
     }
 }
 

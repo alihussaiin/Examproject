@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Solutions - Opgaver</title>
+    <link rel="stylesheet" href="/tasks.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <ul>
+            <li class="tilbage-button">
+                <a href="/subprojects" class="btn btn-secondary">Tilbage til subprojekter</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="button-group">
+        <a th:href="@{/create_task/{subProjectId}(subProjectId=${subProjectId})}" class="btn task">Opret opgave</a>
+    </div>
+
+    <h2>Opgaver</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Beskrivelse</th>
+            <th>Status</th>
+            <th>Prioritet</th>
+            <th>Estimeret timer</th>
+            <th>Rediger</th>
+            <th>Slet</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.status}"></td>
+            <td th:text="${task.priority}"></td>
+            <td th:text="${task.estimatedTime}"></td>
+            <td>
+                <form th:action="@{/edit_task.html/{id}(id=${task.id})}" method="get">
+                    <button class="edit" type="submit">Rediger</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/confirm_delete_task/{id}/{subProjectId}(id=${task.id}, subProjectId=${subProjectId})}" method="get">
+                    <button type="submit" class="btn delete">Slet</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
