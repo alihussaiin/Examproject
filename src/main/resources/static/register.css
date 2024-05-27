@@ -1,81 +1,61 @@
-/* Reset styles */
-body, h2, label {
+body {
     margin: 0;
     padding: 0;
-}
-
-body {
-    background-color: #f8f9fa;
     font-family: Arial, sans-serif;
+    background: url('https://t3.ftcdn.net/jpg/02/81/97/02/240_F_281970265_KR6Ey4XF3miLYq0QDp3WsH0m35MR2tGC.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    margin: auto;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    width: 100%;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 30px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.btn {
-    display: inline-block;
-    width: 48%; /* Justeret bredde for to knapper */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
     padding: 10px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary {
-    background-color: #007bff; /* Blå farve for Opret knappen */
-    color: #fff;
-}
-
-.btn-secondary {
-    background-color: #6c757d; /* Grå farve for Tilbage knappen */
-    color: #fff;
-}
-
-.btn:hover {
-    filter: brightness(110%);
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .button-group {
-    text-align: center; /* Centrer knapperne */
+    text-align: center;
 }
 
-.registration-form {
-    text-align: center; /* Centrer formen */
-}
-.back {
-    background-color: #FF0000; /* Rød farve */
+.btn {
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
     border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.back:hover {
-    background-color: #B22222; /* Mørkere rød farve */
+.btn:hover {
+    background-color: #45a049;
 }

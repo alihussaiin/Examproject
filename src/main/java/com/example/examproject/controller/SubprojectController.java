@@ -75,6 +75,7 @@ import java.util.List;
         public String deleteSubproject(@RequestParam("subprojectId") int subprojectId, @RequestParam("projectId") int projectId) {
             System.out.println("subprojectId" + projectId);
             subprojectService.deleteSubproject(subprojectId);
-            return "redirect:/subprojects/" + projectId;
+            System.out.println("success");
+            return "redirect:/project/" + projectId;
         }
     }
