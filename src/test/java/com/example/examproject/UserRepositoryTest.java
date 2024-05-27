@@ -55,7 +55,7 @@ public class UserRepositoryTest {
     @Test
     void testFindByUsername() {
         // Arrange
-        String username = "john123"; // Assuming this username exists in your test data
+        String username = "joel123"; // Assuming this username exists in your test data
 
         // Act
         User foundUser = userRepository.findByUsername(username);
