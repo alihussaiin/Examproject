@@ -17,7 +17,7 @@ public class SubprojectRepository {
     @Value("root")
     private String dbUsername;
     // - problemer med at opsætte connection ->
-    @Value("Kwc52vap2qc#")
+    @Value("@H0wtomakemoney")
     private String dbPassword;
 
     public Subproject createSubproject(Subproject subproject) {

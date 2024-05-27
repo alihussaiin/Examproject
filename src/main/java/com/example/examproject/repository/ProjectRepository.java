@@ -18,7 +18,7 @@ import java.util.ArrayList;
         @Value("root")
         private String dbUsername;
 
-        @Value("Kwc52vap2qc#")
+        @Value("@H0wtomakemoney")
         private String dbPassword;
 
         public Project createProject(Project project) {
@@ -53,10 +53,10 @@ import java.util.ArrayList;
            Connection conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
             ArrayList<Project> projects = new ArrayList<>();
             String SQL = "SELECT * FROM project where users_id = ?";
-            PreparedStatement ps = null;
+
             ResultSet resultSet = null;
 
-            try {PreparedStatement p= conn.prepareStatement(SQL);
+            try {PreparedStatement ps = conn.prepareStatement(SQL);
                 ps.setInt(1, userId);
                 resultSet = ps.executeQuery();
 
