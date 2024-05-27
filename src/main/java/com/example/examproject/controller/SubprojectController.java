@@ -23,8 +23,7 @@ import java.util.List;
         @GetMapping("/create_subproject/{projectId}")
         public String createSubprojectForm(@PathVariable("projectId") int projectId, Model model, HttpSession session) {
             model.addAttribute("subprojectObject", new Subproject());
-
-            session.setAttribute("currentProjectId", projectId); // Set projectId in session
+            session.setAttribute("currentProjectId", projectId);
             return "create_subproject";
         }
 
@@ -63,14 +62,14 @@ import java.util.List;
             return "redirect:/project/" + id;
         }
 
-        @GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")
         public String confirmDeleteSubproject(@PathVariable("subprojectId") int subprojectId, @PathVariable("projectId") int projectId, Model model) {
             Subproject subproject = subprojectService.getSubprojectById(subprojectId);
             model.addAttribute("subprojectId", subprojectId);
             model.addAttribute("projectId", projectId);
             System.out.println(subprojectId + " " + projectId);
             return "confirm_delete_subproject";
-        }
+        }@GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")
+
 
         @PostMapping("/deleteSubproject")
         public String deleteSubproject(@RequestParam("subprojectId") int subprojectId, @RequestParam("projectId") int projectId) {

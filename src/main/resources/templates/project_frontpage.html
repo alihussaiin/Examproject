@@ -44,19 +44,17 @@
             <td th:text="${project.startDate}"></td>
             <td th:text="${project.endDate}"></td>
             <td>
-                <form th:action="@{/edit_project/{id}(id = ${project.id})}" method="get">
-                    <input type="hidden" name="projectId" th:value="${project.id}">
+                <form th:action="@{/edit_project/{id}(id=${project.id})}" method="get">
                     <button class="edit" type="submit">Rediger</button>
                 </form>
             </td>
             <td>
-                <form th:action="@{/deleteProject}" method="post">
-                    <input type="hidden" name="projectId" th:value="${project.id}">
+                <form th:action="@{'/confirm_delete/' + ${project.id}}" method="get">
                     <button class="delete" type="submit">Slet</button>
                 </form>
+
             </td>
         </tr>
-        <!-- Gentag dette mønster for hver projekt -->
         </tbody>
     </table>
 </div>

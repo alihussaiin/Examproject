@@ -75,20 +75,19 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
-    @GetMapping("/confirm_delete/{id}")
-    public String confirmDelete(@PathVariable("id") int id, Model model) {
-        model.addAttribute("projectId", id);
-        return "confirm_delete.";
+    @GetMapping("/confirm_delete/{projectId}")
+        public String confirmDelete(@PathVariable("projectId") int projectId, Model model) {
+        model.addAttribute("projectId", projectId);
+        return "confirm_delete";
     }
-
 
     @PostMapping("/deleteProject")
-    public String deleteProject(@RequestParam("projectId") int id, Model model) {
-        projectService.deleteProject(id);
-        model.addAttribute("project");
+    public String deleteProject(@RequestParam("projectId") int projectId, Model model) {
+        model.addAttribute("projectId", projectId);
+        projectService.deleteProject(projectId);
         return "redirect:/projects";
-
     }
+
 
     @GetMapping("/project/{id}")
     public String viewProjectDetails(@PathVariable("id") int id, Model model, HttpSession session) {
