@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Solutions - Subprojekter</title>
+    <link rel="stylesheet" href="/subprojects.css">
+</head>
+<body>
+<p th:text="${id}"></p>
+
+<div class="container">
+    <nav class="navbar">
+        <ul>
+            <li class="tilbage-button">
+                <a href="/projects" class="btn btn-secondary">Tilbage til projekter</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="button-group">
+        <a th:href="@{/create_subproject/{projectId}(projectId=${project.id})}" class="btn subproject">Opret Subprojekt</a>
+    </div>
+
+    <h2>Subprojekter</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Beskrivelse</th>
+            <th>Status</th>
+            <th>Start dato</th>
+            <th>Slut dato</th>
+            <th>Rediger</th>
+            <th>Slet</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="subproject : ${subprojects}">
+            <td>
+                <a th:href="@{/tasks/{subprojectId}(subprojectId=${subproject.id})}" th:text="${subproject.name}"></a>
+            </td>
+            <td th:text="${subproject.description}"></td>
+            <td th:text="${subproject.status}"></td>
+            <td th:text="${subproject.startDate}"></td>
+            <td th:text="${subproject.endDate}"></td>
+            <td>
+                <form th:action="@{/edit_subproject/{id}(id=${subproject.id})}" method="get">
+                    <button class="edit" type="submit">Rediger</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{'/confirm_delete_subproject/' + ${subproject.id} + '/' + ${id}}" method="get">
+                    <button type="submit" class="delete">Slet</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

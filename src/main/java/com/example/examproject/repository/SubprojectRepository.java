@@ -17,7 +17,7 @@ public class SubprojectRepository {
     @Value("root")
     private String dbUsername;
     // - problemer med at opsætte connection ->
-    @Value("Dru58tet@")
+    @Value("Kwc52vap2qc#")
     private String dbPassword;
 
     public Subproject createSubproject(Subproject subproject) {
@@ -95,21 +95,6 @@ public class SubprojectRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return subproject;
     }
@@ -128,18 +113,12 @@ public class SubprojectRepository {
                 throw new SQLException("Deleting subproject failed, no rows affected.");
             }
         } catch (SQLException e) {
+            System.out.println("Fejl ved sletning af subprojekt");
             throw new RuntimeException(e);
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -181,13 +160,6 @@ public class SubprojectRepository {
             if (ps != null) {
                 try {
                     ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

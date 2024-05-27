@@ -85,7 +85,7 @@ a.btn {
 }
 
 a.btn:hover {
-    background-color: #c82333;
+    background-color: darkgray;
 }
 
 .button-group {

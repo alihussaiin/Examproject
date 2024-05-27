@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Subproject</title>
+    <title>Rediger subprojekt</title>
     <link rel="stylesheet" href="/edit_subproject.css">
 </head>
 <body>
 <div class="container">
-    <h1>Edit Subproject</h1>
+    <h1>Rediger subprojekt</h1>
 
     <form th:action="@{/edit_subproject/{id}(id=${subproject.id})}" method="post" th:object="${subproject}">
         <input type="hidden" name="subprojectId" th:value="${subproject.id}">
@@ -19,22 +19,22 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description" th:text="${subproject.description}"></textarea>
 
-        <label for="startDate">Start Date:</label>
+        <label for="startDate">Start Dato:</label>
         <input type="date" id="startDate" name="startDate" th:value="${subproject.startDate}">
 
-        <label for="endDate">End Date:</label>
+        <label for="endDate">Start Dato:</label>
         <input type="date" id="endDate" name="endDate" th:value="${subproject.endDate}">
 
         <label for="status">Status:</label>
         <select id="status" name="status">
-            <option value="Pending" th:selected="${subproject.status == 'Pending'}">Pending</option>
-            <option value="In Progress" th:selected="${subproject.status == 'In Progress'}">In Progress</option>
-            <option value="Completed" th:selected="${subproject.status == 'Completed'}">Completed</option>
+            <option value="Afventer" th:selected="${subproject.status == 'Afventer'}">Afventer</option>
+            <option value="Påbegyndt" th:selected="${subproject.status == 'Påbegyndt'}">Påbegyndt</option>
+            <option value="Fuldført" th:selected="${subproject.status == 'Fuldført'}">Fuldført</option>
         </select>
 
         <div class="button-group">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="/subprojects" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Gem</button>
+            <a href="/subprojects" class="btn btn-secondary">Tilbage</a>
         </div>
     </form>
 </div>

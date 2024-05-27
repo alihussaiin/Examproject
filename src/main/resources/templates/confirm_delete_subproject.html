@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/confirm_delete.css">
+</head>
+<body>
+<div class="container">
+    <p>Er du sikker på at du vil slette dette subprojekt? Alle oplysninger vil gå tabt.</p>
+    <form th:action="@{/deleteSubproject}" method="post">
+        <input type="hidden" name="subprojectId" th:value="${subprojectId}">
+        <input type="hidden" name="projectId" th:value="${projectId}">
+        <button type="submit" class="btn delete">Slet</button>
+    </form>
+    <form th:action="@{/subprojects}" method="get">
+        <button type="submit" class="btn">Annuller</button>
+    </form>
+</div>
+</body>
+</html>

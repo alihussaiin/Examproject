@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Task</title>
+    <title>Rediger opgave</title>
     <link rel="stylesheet" href="/edit_task.css">
 </head>
 <body>
-<div class="container">
-    <h1>Redgider opgave</h1>
-    <form th:action="@{/edit_task/{subProject_Id}(task.id})}" method="post" th:object="${task}">
-        <input type="hidden" name="id" th:value="${task.id}">
-        <input type="hidden" name="subProjectId" th:value="${task.subProjectId}">
+<div class="container mt-5">
+    <h2>Rediger opgave</h2>
+
+    <form th:action="@{/edit_task/{id}(id=${task.id})}" th:object="${task}" method="post">
+        <input type="hidden" th:field="*{id}" th:value="${task.id}">
         <div class="form-group">
-            <label for="taskName">Task Name:</label>
-            <input type="text" id="taskName" name="taskName" th:value="${task.taskName}" required>
+            <label for="description">Beskrivelse:</label>
+            <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Indtast beskrivelse" required>
         </div>
+
         <div class="form-group">
-            <label for="status">Status:</label>
-            <input type="text" id="status" name="status" th:value="${task.status}" required>
+            <label for="status">Status</label>
+            <select class="form-control" id="status" th:field="*{status}" required>
+                <option value="Afventer">Afventer</option>
+                <option value="Påbegyndt">Påbegyndt</option>
+                <option value="Fuldført">Fuldført</option>
+            </select>
         </div>
+
         <div class="form-group">
-            <label for="priority">Priority:</label>
-            <input type="text" id="priority" name="priority" th:value="${task.priority}" required>
+            <label for="priority">Prioritet</label>
+            <select class="form-control" id="priority" th:field="*{priority}" required>
+                <option value="Lav">Lav</option>
+                <option value="Middel">Middel</option>
+                <option value="Høj">Høj</option>
+            </select>
         </div>
+
         <div class="form-group">
-            <button type="submit">Update Task</button>
+            <label for="estimatedTime">Estimeret tid (Timer):</label>
+            <input type="number" class="form-control" id="estimatedTime" th:field="*{estimatedTime}" placeholder="Indtast estimeret tid" required>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Gem</button>
+            <a href="/tasks" class="btn btn-secondary">Tilbage</a>
         </div>
     </form>
 </div>

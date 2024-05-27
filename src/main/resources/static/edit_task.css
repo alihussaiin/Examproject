@@ -1,5 +1,4 @@
-/* task.css */
-body {
+.body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -34,24 +33,19 @@ label {
     color: #555;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
+button[type="submit"],
+a.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    color: white;
-    font-size: 16px;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
 }
 
-button:hover {
+button[type="submit"]:hover,
+a.btn:hover {
     background-color: #0056b3;
 }
