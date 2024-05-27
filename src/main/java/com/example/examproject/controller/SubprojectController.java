@@ -57,9 +57,10 @@ import java.util.List;
         }
 
         @PostMapping("/edit_subproject/{id}")
-        public String updateSubproject(@ModelAttribute Subproject subproject) {
+        public String updateSubproject(@PathVariable ("id") int id, Model model, Subproject subproject) {
+            model.addAttribute("id",id);
             subprojectService.updateSubproject(subproject);
-            return "redirect:/subprojects";
+            return "redirect:/project/" + id;
         }
 
         @GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")

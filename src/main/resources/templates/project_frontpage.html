@@ -26,8 +26,8 @@
     <table>
         <thead>
         <tr>
-            <th>Projektnavn</th>
-            <th>Projektbeskrivelse</th>
+            <th>Navn</th>
+            <th>Projekt beskrivelse</th>
             <th>Status</th>
             <th>Start dato</th>
             <th>Slut dato</th>
@@ -50,9 +50,9 @@
                 </form>
             </td>
             <td>
-                <form th:action="@{/confirm_delete/{id}(id=${project.id})}" method="get">
+                <form th:action="@{/deleteProject}" method="post">
                     <input type="hidden" name="projectId" th:value="${project.id}">
-                    <button type="submit" class="btn delete">Slet</button>
+                    <button class="delete" type="submit">Slet</button>
                 </form>
             </td>
         </tr>

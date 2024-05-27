@@ -1,5 +1,6 @@
 package com.example.examproject.controller;
 
+import com.example.examproject.model.Subproject;
 import com.example.examproject.model.Task;
 import com.example.examproject.service.TaskService;
 import jakarta.servlet.http.HttpSession;
@@ -18,11 +19,16 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/create_task/{subProjectId}")
+    /*@GetMapping("/create_task/{subProjectId}")
     public String createTaskForm(@PathVariable("subProjectId") int subProjectId, Model model, HttpSession session) {
         model.addAttribute("taskObject", new Task());
         session.setAttribute("subProjectId", subProjectId); // Ensure subProjectId is in session
         return "create_task";
+    }*/
+    @GetMapping("/create_task")
+    public String showCreateTaskForm(Model model) {
+        model.addAttribute("task", new Task());
+        return "create_task"; // Thymeleaf template create_task.html
     }
 
     @PostMapping("/create_task")
@@ -49,10 +55,12 @@ public class TaskController {
         return "edit_task";
     }
 
-    @PostMapping("/edit_task/{id}")
-    public String updateTask(@PathVariable ("id") Task task) {
+    @PostMapping("/edit_task/{subprojectId}")
+    public String updateTask(@PathVariable ("subprojectId") int subprojectId,Model model, Task task) {
+        model.addAttribute("subprojectId", subprojectId);
         taskService.updateTask(task);
-        return "redirect:/tasks/" + task.getSubProject_Id();
+        System.out.println(subprojectId);
+        return "redirect:/tasks/" + subprojectId;
     }
 
     @GetMapping("/confirm_delete_task/{id}/{subProjectId}")

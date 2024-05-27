@@ -43,3 +43,10 @@ CREATE TABLE task (
                       priority VARCHAR(255),
                       FOREIGN KEY (subproject_id) REFERENCES subproject(subproject_id)
 );
+
+INSERT INTO project (id, users_id, name, description, status, start_date, end_date) VALUES
+                                                                                        (1, null, 'projekt 1','final', 'igang', '2024-05-15', '2024-05-25'),
+                                                                                        (2, null, 'projekt 2','robotics','igang','2024-05-20', '2024-05-25'),
+                                                                                        (3, null, 'projekt 3','game development', 'igang', '2024-05-05', '2024-05-30'),
+                                                                                        (4, null, 'projekt 4','fullstack', 'igang', '2024-05-01', '2024-05-31'),
+                                                                                        (5, null, 'projekt 5','security', 'igang', '2024-05-01', '2024-05-25');

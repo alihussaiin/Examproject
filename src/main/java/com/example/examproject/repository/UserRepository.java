@@ -10,14 +10,13 @@ import java.sql.*;
 @Repository
 public class UserRepository {
 
-    @Value("jdbc:mysql://localhost:3306/projectmanager_db")
+    @Value("jdbc:mysql://localhost:3306/ProjectManager_db")
     private String dbUrl;
 
     @Value("root")
     private String dbUsername;
 
-
-    @Value("Kwc52vap2qc#")
+    @Value("@H0wtomakemoney")
     private String dbPassword;
 
 
