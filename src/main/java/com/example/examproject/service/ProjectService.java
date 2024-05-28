@@ -21,15 +21,9 @@ public class ProjectService {
 
     }
 
-
     public ArrayList<Project> getAllProjects(int userId) {
         return projectRepository.getAllProjects(userId);
     }
-
-
-//    public Project updateProject(int id, Project updateProject) {
-//        return projectRepository.updateProject(updateProject);
-//    }
 
     public void updateProject(Project updateProject) {
         projectRepository.updateProject(updateProject);
@@ -43,8 +37,6 @@ public class ProjectService {
 
         projectRepository.deleteProject(id);
     }
-
-
 }
 
 

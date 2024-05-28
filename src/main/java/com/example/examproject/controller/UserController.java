@@ -18,20 +18,17 @@ public class UserController {
     public UserController(UserService userService) {
 
         this.userService = userService;
-
-
     }
 
     private User user;
 
     @GetMapping("/")
     public String home() {
-        // Tilføj eventuelle data til model, som skal vises i visningen
         return "index";
     }
 
 
-        @GetMapping("/register")
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) { //KLAR
         model.addAttribute("userObject", new User());
         return "register";
@@ -39,8 +36,8 @@ public class UserController {
 
     @PostMapping("/users/register")
     public String registerUser(@ModelAttribute User user) {
-        userService.registerUser(user); // Kalder metoden i UserService for at registrere brugeren
-        return "redirect:/login"; // Omdiriger brugeren til login-siden efter registrering
+        userService.registerUser(user);
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
@@ -48,30 +45,6 @@ public class UserController {
         model.addAttribute("user", new User());
         return "login";
     }
-
-//    @PostMapping("/login")
-//    public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
-//        // Kontroller, om brugeren findes i databasen
-//        User validatedUser = userService.findbyUsername(user.getUsername());
-//        session.setAttribute("loggedInUser", validatedUser);
-//        System.out.println("validatedUser = " + validatedUser);
-//        System.out.println("user = " + user);
-//
-//        if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
-//            // Brugeren er fundet i databasen og adgangskoden matcher
-//            // Gem brugeren i sessionen i 1800 sekunder
-//            session.setAttribute("loggedInUser", validatedUser);
-//            System.out.println("session " + session.getAttribute("loggedInUserId"));
-//            session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
-//            return "redirect:/project_frontpage"; // Omdiriger brugeren til forsiden
-//        } else {
-//            System.out.println("FEJL");
-//            // Brugeren blev ikke fundet i databasen eller adgangskoden er forkert
-//            model.addAttribute("error", "Invalid username or password");
-//            return "login"; // Tilbage til loginside med fejlmeddelelse
-//        }
-//    }
-
 
     @PostMapping("/login")
     public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
@@ -87,11 +60,10 @@ public class UserController {
         }
     }
 
-
     @GetMapping("/logud")
     public String logout(HttpSession session) {
-        session.invalidate(); // Udløs sessionen for at logge brugeren ud
-        return "index"; // Omdiriger brugeren til forside
+        session.invalidate();
+        return "index";
     }
 }
 

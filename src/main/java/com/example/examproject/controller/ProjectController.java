@@ -27,7 +27,6 @@ public class ProjectController {
         this.taskService = taskService;
     }
 
-    //opret projekt og går hen til stien createProject
     @GetMapping("/create_project")
     public String createProjectform(Model model) {
         model.addAttribute("projectObject", new Project());
@@ -36,12 +35,9 @@ public class ProjectController {
 
     @PostMapping("/create_project")
     public String createProject(@ModelAttribute Project project, HttpSession session) {
-        // Få brugerens ID fra sessionen og tilknyt det til det nye projekt
         User user = (User) session.getAttribute("loggedInUser");
         project.setUsers_id(user.getid());
-        // Send projektet til projektets serviceklasse for at gemme det i databasen
         projectService.createProject(project);
-        // Omdiriger brugeren til forsiden for projekter
         return "redirect:/projects";
     }
 
@@ -52,7 +48,6 @@ public class ProjectController {
     }
 
 
-    // Opret en side for visning af alle projekter
     @GetMapping("/projects")
     public String getAllProjects(Model model, HttpSession session) {
         User user = (User) session.getAttribute("loggedInUser");

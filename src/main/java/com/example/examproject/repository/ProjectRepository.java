@@ -34,18 +34,14 @@ import java.util.ArrayList;
                 ps.setDate(5, Date.valueOf(project.getStartDate()));
                 ps.setDate(6, Date.valueOf(project.getEndDate()));
 
-                // int rowsafftected betyder at det er antallet af ændringer
-
                 int rowsAffected = ps.executeUpdate();
-                // og hvis det antallet af ændringer er 0 skal den kaste en fejl
                 if (rowsAffected == 0) {
                     throw new SQLException("Oprettelse af projekt mislykkedes ingen, rækker påvirket.");
-                    //Creating project failed, no rows affected.
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return project; // Returnerer det lavet project
+            return project;
         }
 
 
@@ -84,11 +80,9 @@ import java.util.ArrayList;
             PreparedStatement ps = null;
             try {
                 conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-                // Opdater SQL-udtrykket ved at fjerne USERS_ID
                 String SQL = "UPDATE project SET NAME=?, DESCRIPTION=?, STATUS=?, START_DATE=?, END_DATE=? WHERE ID=?";
                 ps = conn.prepareStatement(SQL);
 
-                // Sæt parametrene undtagen USERS_ID og ID
                 ps.setString(1, project.getName());
                 ps.setString(2, project.getDescription());
                 ps.setString(3, project.getStatus());
@@ -96,7 +90,6 @@ import java.util.ArrayList;
                 ps.setDate(5, Date.valueOf(project.getEndDate()));
                 ps.setInt(6, project.getId());  // ID skal bruges i WHERE-betingelsen
 
-                // Udfør opdateringen
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 0) {
                     throw new SQLException("Updating project failed, no rows affected.");
@@ -104,7 +97,6 @@ import java.util.ArrayList;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } finally {
-                // Luk PreparedStatement
                 if (ps != null) {
                     try {
                         ps.close();
@@ -112,9 +104,8 @@ import java.util.ArrayList;
                         e.printStackTrace();
                     }
                 }
-                // Luk Connection hvis nødvendigt (håndteres udenfor metoden hvis nødvendigt)
             }
-            return project; // Returnér det opdaterede projekt
+            return project;
         }
 
 
@@ -128,7 +119,6 @@ import java.util.ArrayList;
                 ps = conn.prepareStatement(SQL);
                 ps.setInt(1, projectId);
 
-                // Execute the deletion
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 0) {
                     throw new SQLException("Deleting project failed, no rows affected.");
@@ -136,7 +126,6 @@ import java.util.ArrayList;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } finally {
-                // Close PreparedStatement
                 if (ps != null) {
                     try {
                         ps.close();
@@ -144,7 +133,6 @@ import java.util.ArrayList;
                         e.printStackTrace();
                     }
                 }
-                // Do not close Connection here if you want to reuse it
             }
         }
 
@@ -172,7 +160,6 @@ import java.util.ArrayList;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } finally {
-                // Close ResultSet
                 if (resultSet != null) {
                     try {
                         resultSet.close();
@@ -180,7 +167,6 @@ import java.util.ArrayList;
                         e.printStackTrace();
                     }
                 }
-                // Close PreparedStatement
                 if (ps != null) {
                     try {
                         ps.close();
@@ -188,7 +174,6 @@ import java.util.ArrayList;
                         e.printStackTrace();
                     }
                 }
-                // Do not close Connection here if you want to reuse it
             }
             return project;
         }

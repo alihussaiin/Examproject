@@ -27,10 +27,8 @@ public class UserService {
     }
 
    public User loginUser(String username, int password) {
-        // find user i db
         User userFromDb = userRepository.findByUsername(username);
 
-       // sammenlign password fra db mod password fra form
        if (userFromDb != null) {
            if (userFromDb.getPassword().equals(password)) {
                return userFromDb;
