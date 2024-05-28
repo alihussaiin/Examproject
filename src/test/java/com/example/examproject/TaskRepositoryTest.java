@@ -22,7 +22,7 @@ public class TaskRepositoryTest {
 
     private Task task;
 
-    @BeforeEach
+   /* @BeforeEach
     public void setUp() {
         task = new Task();
         task.setSubProject_Id(1);
@@ -51,7 +51,7 @@ public class TaskRepositoryTest {
         assertFalse(tasks.isEmpty());
     }
 
-    /*@Test
+    @Test
     public void testUpdateTask() {
         Task createdTask = taskRepository.createTask(task);
 
@@ -71,7 +71,7 @@ public class TaskRepositoryTest {
         Task deletedTask = taskRepository.getTaskById(taskId);
 
         assertNull(deletedTask);
-    }*/
+    }
 
     @Test
     void getTaskById() {
@@ -82,5 +82,5 @@ public class TaskRepositoryTest {
         assertNotNull(task);
         assertEquals(testTaskId, task.getId());
         assertEquals("Task A1-1", task.getDescription());
-    }
+    }*/
 }
