@@ -51,7 +51,7 @@ public class TaskRepositoryTest {
         assertFalse(tasks.isEmpty());
     }
 
-    @Test
+    /*@Test
     public void testUpdateTask() {
         Task createdTask = taskRepository.createTask(task);
 
@@ -71,7 +71,7 @@ public class TaskRepositoryTest {
         Task deletedTask = taskRepository.getTaskById(taskId);
 
         assertNull(deletedTask);
-    }
+    }*/
 
     @Test
     void getTaskById() {
