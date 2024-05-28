@@ -10,16 +10,16 @@
 <div class="container mt-5">
     <h2>Rediger opgave</h2>
 
-    <form th:action="@{/edit_task/{id}(id=${task.id})}" th:object="${task}" method="post">
-        <input type="hidden" name="task.id" th:value="${task.id}">
+    <form th:action="@{/edit_task/{id}(id=${task.subProject_Id})}" th:object="${task}" method="post">
+        <input type="hidden" name="id" th:value="${task.id}">
         <div class="form-group">
             <label for="description">Beskrivelse:</label>
-            <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Indtast beskrivelse" required>
+            <input type="text" class="form-control" id="description" name="description" th:field="*{description}" placeholder="Indtast beskrivelse" required>
         </div>
 
         <div class="form-group">
             <label for="status">Status</label>
-            <select class="form-control" id="status" th:field="*{status}" required>
+            <select class="form-control" id="status" name="status" th:field="*{status}" required>
                 <option value="Afventer">Afventer</option>
                 <option value="Påbegyndt">Påbegyndt</option>
                 <option value="Fuldført">Fuldført</option>
@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="priority">Prioritet</label>
-            <select class="form-control" id="priority" th:field="*{priority}" required>
+            <select class="form-control" id="priority" name="priority" th:field="*{priority}" required>
                 <option value="Lav">Lav</option>
                 <option value="Middel">Middel</option>
                 <option value="Høj">Høj</option>
@@ -37,7 +37,7 @@
 
         <div class="form-group">
             <label for="estimatedTime">Estimeret tid (Timer):</label>
-            <input type="number" class="form-control" id="estimatedTime" th:field="*{estimatedTime}" placeholder="Indtast estimeret tid" required>
+            <input type="number" class="form-control" id="estimatedTime" name="estimatedTime" th:field="*{estimatedTime}" placeholder="Indtast estimeret tid" required>
         </div>
 
         <div class="button-group">

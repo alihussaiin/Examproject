@@ -59,16 +59,18 @@ import java.util.List;
         public String updateSubproject(@PathVariable ("id") int id, Model model, Subproject subproject) {
             model.addAttribute("id",id);
             subprojectService.updateSubproject(subproject);
-            return "redirect:/project/" + id;
+            return "redirect:/project/" + subproject.getProject_Id();
         }
 
+
+        @GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")
         public String confirmDeleteSubproject(@PathVariable("subprojectId") int subprojectId, @PathVariable("projectId") int projectId, Model model) {
             Subproject subproject = subprojectService.getSubprojectById(subprojectId);
             model.addAttribute("subprojectId", subprojectId);
             model.addAttribute("projectId", projectId);
             System.out.println(subprojectId + " " + projectId);
             return "confirm_delete_subproject";
-        }@GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")
+        }
 
 
         @PostMapping("/deleteSubproject")

@@ -19,20 +19,20 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/create_task/{subProjectId}")
-    public String createTaskForm(@PathVariable("subProjectId") int subProjectId, Model model, HttpSession session) {
+    @GetMapping("/create_task/{subprojectId}")
+    public String createTaskForm(@PathVariable("subprojectId") int subprojectId, Model model, HttpSession session) {
         model.addAttribute("taskObject", new Task());
-        session.setAttribute("subProjectId", subProjectId);
+        session.setAttribute("subprojectId", subprojectId);
         return "create_task";
     }
 
 
     @PostMapping("/create_task")
     public String createTask(@ModelAttribute Task task, HttpSession session) {
-        Integer subProjectId = (Integer) session.getAttribute("subProjectId");
-        task.setSubProject_Id(subProjectId);
+        Integer subprojectId = (Integer) session.getAttribute("subprojectId");
+        task.setSubProject_Id(subprojectId);
         taskService.createTask(task);
-        return "redirect:/tasks/" + subProjectId;
+        return "redirect:/tasks/" + subprojectId;
     }
 
 
@@ -52,24 +52,24 @@ public class TaskController {
     }
 
     @PostMapping("/edit_task/{subprojectId}")
-    public String updateTask(@PathVariable ("subprojectId") int subprojectId,Model model, Task task) {
+    public String updateTask(@PathVariable ("subprojectId") int subprojectId,Model model,@ModelAttribute Task task) {
         model.addAttribute("subprojectId", subprojectId);
         taskService.updateTask(task);
         System.out.println(subprojectId);
         return "redirect:/tasks/" + subprojectId;
     }
 
-    @GetMapping("/confirm_delete_task/{id}/{subProjectId}")
-    public String confirmDelete(@PathVariable("id") int taskId, @PathVariable("subProjectId") int subProjectId, Model model) {
+    @GetMapping("/confirm_delete_task/{id}/{subprojectId}")
+    public String confirmDelete(@PathVariable("id") int taskId, @PathVariable("subprojectId") int subprojectId, Model model) {
         model.addAttribute("taskId", taskId);
-        model.addAttribute("subProjectId", subProjectId);
+        model.addAttribute("subprojectId", subprojectId);
         return "confirm_delete_task";
     }
 
     @PostMapping("/deleteTask")
-    public String deleteTask(@RequestParam("taskId") int taskId, @RequestParam("subProjectId") int subProjectId) {
+    public String deleteTask(@RequestParam("taskId") int taskId, @RequestParam("subprojectId") int subprojectId) {
         taskService.deleteTask(taskId);
-        return "redirect:/tasks/" + subProjectId;
+        return "redirect:/tasks/" + subprojectId;
     }
 
 }

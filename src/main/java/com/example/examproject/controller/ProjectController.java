@@ -94,8 +94,6 @@ public class ProjectController {
         Project project = projectService.getProjectById(id);
         List<Subproject> subprojects = subprojectService.getAllSubprojects(id);
         Task task = taskService.getTaskById(id);
-
-
         session.setAttribute("currentProjectId", id);
         model.addAttribute("project", project);
         model.addAttribute("subprojects", subprojects);
