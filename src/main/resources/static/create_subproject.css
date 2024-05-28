@@ -38,13 +38,24 @@ textarea.form-control {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
+    background-color: #218838;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #218838;
 }
 
 .back-btn {
     margin-right: 10px;
 }
+
+a.btn.btn-secondary {
+    background-color: grey; /* Grå farve */
+}
+
+a.btn.btn-secondary:hover {
+    background-color: darkgrey; /* Mørkere grå ved hover */
+}
+
+
+

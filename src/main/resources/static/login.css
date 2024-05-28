@@ -1,9 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    background: rgba(0, 0, 0, 0.5) url('https://t3.ftcdn.net/jpg/02/81/97/02/240_F_281970265_KR6Ey4XF3miLYq0QDp3WsH0m35MR2tGC.jpg') no-repeat center center fixed;
+    background-size: 100% 100%;
 }
+
+
 
 .container {
     max-width: 400px;
