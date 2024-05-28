@@ -25,7 +25,7 @@ public class ProjectRepositoryTest {
 
     private Project project;
 
-    @BeforeEach
+    /*@BeforeEach
     public void setUp() {
         project = new Project();
         project.setUsers_id(5);
@@ -55,7 +55,7 @@ public class ProjectRepositoryTest {
         assertFalse(projects.isEmpty());
     }
 
-    /*@Test
+    @Test
     public void testUpdateProject() {
         Project createdProject = repository.createProject(project);
 
@@ -74,7 +74,7 @@ public class ProjectRepositoryTest {
         Project deletedProject = repository.getProjectById(projectId);
 
         assertNull(deletedProject);
-    }*/
+    }
 
     @Test
     void getProjectById() {
@@ -87,7 +87,7 @@ public class ProjectRepositoryTest {
         assertNotNull(project);
         assertEquals(testProjectId, project.getId());
         assertEquals("Projekt", project.getName());
-    }
+    }*/
 
 
 

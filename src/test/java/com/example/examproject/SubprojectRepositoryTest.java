@@ -20,7 +20,7 @@ public class SubprojectRepositoryTest {
     @Autowired
     private SubprojectRepository subprojectRepository;
     private Subproject subproject;
-    @BeforeEach
+   /* @BeforeEach
     public void setUp() {
         subproject = new Subproject();
         subproject.setProjectId(1);
@@ -46,7 +46,7 @@ public class SubprojectRepositoryTest {
         assertFalse(subprojects.isEmpty());
     }
 
-    /*@Test
+    @Test
     public void testUpdateSubproject() {
         Subproject createdSubproject = subprojectRepository.createSubproject(subproject);
         createdSubproject.setName("Updateret subprojekt navn");

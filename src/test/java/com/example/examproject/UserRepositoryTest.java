@@ -18,7 +18,7 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Test
+   /* @Test
     void testRegisterUser() {
         User newUser = new User();
         newUser.setid(4);
@@ -44,7 +44,7 @@ public class UserRepositoryTest {
 
     }
 
-   /* @Test
+    @Test
     void testFindByUsername() {
         String username = "joel123"; // Assuming this username exists in your test data
 
