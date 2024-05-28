@@ -17,12 +17,10 @@
         </ul>
     </nav>
 
-    <!-- Knappen til at tilføje et nyt projekt -->
     <div class="button-group">
         <a th:href="@{/create_project}" class="add btn">Opret projekt</a>
     </div>
 
-    <!-- Tabel til visning af projekter -->
     <table>
         <thead>
         <tr>
@@ -36,7 +34,6 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Her kan du indsætte dynamisk genereret HTML for hver projekt -->
         <tr th:each="project : ${projects}">
             <td><a th:href="@{/project/{id}(id=${project.id})}" th:text="${project.name}"></a></td>
             <td th:text="${project.description}"></td>

@@ -55,7 +55,6 @@ public class TaskController {
     public String updateTask(@PathVariable ("subprojectId") int subprojectId,Model model,@ModelAttribute Task task) {
         model.addAttribute("subprojectId", subprojectId);
         taskService.updateTask(task);
-        System.out.println(subprojectId);
         return "redirect:/tasks/" + subprojectId;
     }
 

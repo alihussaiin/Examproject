@@ -38,7 +38,6 @@ public class UserRepository {
         return user;
     }
 
-    //TODO refactor if time
     public User findById(int id) {
         try (Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?")) {
@@ -47,12 +46,11 @@ public class UserRepository {
                 if (rs.next()) {
                     return extractUserFromResultSet(rs);
                 } else {
-                    return null; // Return null if the user does not exist
+                    return null;
                 }
             }
         } catch (SQLException e) {
-            // Handle SQL exceptions
-            e.printStackTrace(); // Print or log the exception
+            e.printStackTrace();
             throw new RuntimeException("Failed to retrieve user by ID", e);
         }
     }
@@ -66,12 +64,11 @@ public class UserRepository {
                 if (rs.next()) {
                     return extractUserFromResultSet(rs);
                 } else {
-                    return null; // Return null if the user does not exist
+                    return null;
                 }
             }
         } catch (SQLException e) {
-            // Handle SQL exceptions
-            e.printStackTrace(); // Print or log the exception
+            e.printStackTrace();
             throw new RuntimeException("Failed to retrieve user by username", e);
         }
     }
@@ -80,7 +77,7 @@ public class UserRepository {
         return new User(
                 rs.getString("first_name"),
                 rs.getString("username"),
-                rs.getString("password"), // Assuming password is a String, adjust accordingly
+                rs.getString("password"),
                 rs.getInt("ID")
         );
     }
