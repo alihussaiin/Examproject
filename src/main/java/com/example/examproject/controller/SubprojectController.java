@@ -1,5 +1,7 @@
 package com.example.examproject.controller;
+import com.example.examproject.model.Project;
 import com.example.examproject.model.Subproject;
+import com.example.examproject.service.ProjectService;
 import com.example.examproject.service.SubprojectService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,12 @@ import java.util.List;
     public class SubprojectController {
 
         private SubprojectService subprojectService;
+        private ProjectService projectService;
 
 
-        public SubprojectController(SubprojectService subprojectService) {
+        public SubprojectController(SubprojectService subprojectService,ProjectService projectService) {
             this.subprojectService = subprojectService;
+            this.projectService = projectService;
         }
 
 
@@ -39,9 +43,9 @@ import java.util.List;
 
 
         @GetMapping("/subprojects/{projectId}")
-        public String getAllSubprojects(@PathVariable("projectId") int projectId, Model model, HttpSession session) {
+        public String getAllSubprojects(@PathVariable("projectId") int projectId, Model model) {
             model.addAttribute("id", projectId);
-            session.setAttribute("currentProjectId", projectId);
+
             System.out.println(projectId);// Set projectId in session
             List<Subproject> subprojects = subprojectService.getAllSubprojects(projectId);
             model.addAttribute("subprojects", subprojects);
@@ -59,8 +63,8 @@ import java.util.List;
         @PostMapping("/edit_subproject/{id}")
         public String updateSubproject(@PathVariable ("id") int id, Model model, Subproject subproject) {
             model.addAttribute("id",id);
-            subprojectService.updateSubproject(subproject);
-            return "redirect:/project/" + id;
+            var subProject = subprojectService.updateSubproject(subproject);
+            return "redirect:/project/" + subProject.getProject_Id();
         }
 
         @GetMapping("/confirm_delete_subproject/{subprojectId}/{projectId}")
@@ -77,6 +81,6 @@ import java.util.List;
             System.out.println("subprojectId" + projectId);
             subprojectService.deleteSubproject(subprojectId);
             System.out.println("success");
-            return "redirect:/project/" + projectId;
+            return "redirect:/project/" + subprojectId;
         }
     }

@@ -12,6 +12,7 @@
 
     <form th:action="@{/edit_subproject/{id}(id=${subproject.id})}" method="post" th:object="${subproject}">
         <input type="hidden" name="subprojectId" th:value="${subproject.id}">
+        <input type="hidden" name="project" th:value="${project}">
 
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" th:value="${subproject.name}">

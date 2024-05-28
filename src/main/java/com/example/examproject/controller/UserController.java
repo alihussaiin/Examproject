@@ -31,7 +31,7 @@ public class UserController {
     }
 
 
-        @GetMapping("/register")
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) { //KLAR
         model.addAttribute("userObject", new User());
         return "register";
@@ -82,7 +82,7 @@ public class UserController {
         if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
             // Brugeren er fundet i databasen og adgangskoden matcher
             // Gem brugeren i sessionen i 1800 sekunder
-           // session.setAttribute("loggedInUser", validatedUser);
+            // session.setAttribute("loggedInUser", validatedUser);
             //System.out.println("session " + session.getAttribute("loggedInUserId"));
             //session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
             return "redirect:/projects"; // Omdiriger brugeren til forsiden

@@ -9,7 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,12 +23,63 @@ public class ProjectRepositoryTest {
     private ProjectRepository repository;
 
 
+    private Project project;
 
+    @BeforeEach
+    public void setUp() {
+        project = new Project();
+        project.setUsers_id(5);
+        project.setName("Projekt");
+        project.setDescription("Test test test");
+        project.setStatus("Påbegyndt");
+        project.setStartDate(LocalDate.now());
+        project.setEndDate(LocalDate.now().plusDays(10));
+    }
+
+    @Test
+    public void testCreateProject() {
+        Project createdProject = repository.createProject(project);
+
+        assertNotNull(createdProject);
+        assertNotNull(createdProject.getId());
+        assertEquals("Projekt", createdProject.getName());
+    }
+
+    @Test
+    public void testGetAllProjects() {
+        repository.createProject(project);
+
+        List<Project> projects = repository.getAllProjects(1);
+
+        assertNotNull(projects);
+        assertFalse(projects.isEmpty());
+    }
+
+    @Test
+    public void testUpdateProject() {
+        Project createdProject = repository.createProject(project);
+
+        createdProject.setName("Projekt");
+        Project updatedProject = repository.updateProject(createdProject);
+
+        assertEquals("Projekt", updatedProject.getName());
+    }
+
+    @Test
+    public void testDeleteProject() {
+        Project createdProject = repository.createProject(project);
+
+        int projectId = createdProject.getId();
+        repository.deleteProject(projectId);
+        Project deletedProject = repository.getProjectById(projectId);
+
+        assertNull(deletedProject);
+    }
 
     @Test
     void getProjectById() {
         // Arrange
-        int testProjectId = 1; //
+        int testProjectId = 5; //
 
         // Act
         Project project = repository.getProjectById(testProjectId);
@@ -34,55 +87,11 @@ public class ProjectRepositoryTest {
         // Assert
         assertNotNull(project);
         assertEquals(testProjectId, project.getId());
-        assertEquals("projekt 1", project.getName());
+        assertEquals("Projekt", project.getName());
     }
 
-    @Test
-    void getAllProjects() {
-        // Arrange
-        int userId = 1;
 
-        // Act
-        ArrayList<Project> projects = repository.getAllProjects(userId);
 
-        // Assert
-        assertNotNull(projects);
-        assertFalse(projects.isEmpty());
-
-    }
-
-   /* @Test
-    void testUpdateProject() {
-        // Arrange
-        Project testProject = createTestProject(); // Create a test project
-
-        // Act
-        String newName = "Updated Test Project";
-        testProject.setName(newName);
-        projectRepository.updateProject(testProject);
-        Project updatedProject = projectRepository.getProjectById(testProject.getId());
-
-        // Assert
-        assertNotNull(updatedProject);
-        assertEquals(newName, updatedProject.getName());
-        // Add additional assertions as needed
-    }
-
-    @Test
-    void testDeleteProject() {
-        // Arrange
-        Project testProject = createTestProject();
-        int projectId = testProject.getId();
-
-        // Act
-        projectRepository.deleteProject(projectId);
-        Project deletedProject = projectRepository.getProjectById(projectId);
-
-        // Assert
-        assertNull(deletedProject);
-    }
-
-    */
 }
 
 

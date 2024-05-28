@@ -19,16 +19,11 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    /*@GetMapping("/create_task/{subProjectId}")
+    @GetMapping("/create_task/{subProjectId}")
     public String createTaskForm(@PathVariable("subProjectId") int subProjectId, Model model, HttpSession session) {
         model.addAttribute("taskObject", new Task());
         session.setAttribute("subProjectId", subProjectId); // Ensure subProjectId is in session
         return "create_task";
-    }*/
-    @GetMapping("/create_task")
-    public String showCreateTaskForm(Model model) {
-        model.addAttribute("task", new Task());
-        return "create_task"; // Thymeleaf template create_task.html
     }
 
     @PostMapping("/create_task")

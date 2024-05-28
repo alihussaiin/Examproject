@@ -22,10 +22,10 @@ public class UserRepositoryTest {
     void testRegisterUser() {
         // Arrange
         User newUser = new User();
-        newUser.setid(1);
-        newUser.setFirstname("John");
-        newUser.setUsername("john123");
-        newUser.setPassword("password123");
+        newUser.setid(4);
+        newUser.setFirstname("leoj");
+        newUser.setUsername("leoj123");
+        newUser.setPassword("password1");
 
         // Act
         User registeredUser = userRepository.registerUser(newUser);

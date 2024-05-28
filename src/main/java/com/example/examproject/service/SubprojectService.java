@@ -22,8 +22,8 @@ public class SubprojectService {
         return subprojectRepository.getAllSubprojects(projectId);
     }
 
-    public void updateSubproject(Subproject updateSubproject) {
-        subprojectRepository.updateSubproject(updateSubproject);
+    public Subproject updateSubproject(Subproject updateSubproject) {
+        return subprojectRepository.updateSubproject(updateSubproject);
     }
 
     public Subproject getSubprojectById(int id) {

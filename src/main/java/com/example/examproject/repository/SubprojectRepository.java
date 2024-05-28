@@ -79,7 +79,7 @@ public class SubprojectRepository {
         PreparedStatement ps = null;
         try {
             conn = ConnectionManager.getConnection(dbUrl, dbUsername, dbPassword);
-            String SQL = "UPDATE subproject SET name=?, description=?, status=?, start_date=?, end_date=? WHERE ID=?";
+            String SQL = "UPDATE subproject SET name=?, description=?, status=?, start_date=?, end_date=?, project_id=? WHERE ID=?";
             ps = conn.prepareStatement(SQL);
 
             ps.setString(1, subproject.getName());
@@ -87,7 +87,8 @@ public class SubprojectRepository {
             ps.setString(3, subproject.getStatus());
             ps.setDate(4, Date.valueOf(subproject.getStartDate()));
             ps.setDate(5, Date.valueOf(subproject.getEndDate()));
-            ps.setInt(6, subproject.getId());
+            ps.setInt(6, subproject.getProject_Id());
+            ps.setInt(7, subproject.getId());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
