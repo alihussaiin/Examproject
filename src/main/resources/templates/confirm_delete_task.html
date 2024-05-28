@@ -14,7 +14,7 @@
         <button type="submit" class="btn delete">Slet</button>
     </form>
     <form th:action="@{/tasks/${subprojectId}|}" method="get">
-        <button type="submit" class="btn">Annuller</button>
+        <a th:href="@{/tasks/{id}(id=${subprojectId})}" class="btn btn-secondary">Tilbage</a>
     </form>
 </div>
 </body>

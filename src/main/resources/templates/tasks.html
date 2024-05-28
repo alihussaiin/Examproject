@@ -11,13 +11,13 @@
     <nav class="navbar">
         <ul>
             <li class="tilbage-button">
-                <a href="/projects" class="btn btn-secondary">Tilbage til subprojekter</a>
+                <a th:href="@{/project/{project_id}(project_id=${project_id})}" class="btn btn-secondary">Tilbage til subprojekter</a>
             </li>
         </ul>
     </nav>
 
     <div class="button-group">
-        <<a th:href="@{/create_task/{subprojectId}(subprojectId=${subprojectId})}" class="btn task">Opret opgave</a>
+        <a th:href="@{/create_task/{subprojectId}(subprojectId=${subprojectId})}" class="btn task">Opret opgave</a>
 
     </div>
 

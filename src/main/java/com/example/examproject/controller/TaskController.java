@@ -36,11 +36,12 @@ public class TaskController {
     }
 
 
-    @GetMapping("/tasks/{subprojectId}")
-    public String getAllTasks(@PathVariable("subprojectId") int subprojectId, Model model) {
+    @GetMapping("/tasks/{subprojectId}/{project_id}")
+    public String getAllTasks(@PathVariable("subprojectId") int subprojectId, @PathVariable ("project_id") int project_id, Model model) {
         List<Task> tasks = taskService.getAllTasks(subprojectId);
         model.addAttribute("tasks", tasks);
         model.addAttribute("subprojectId", subprojectId);
+        model.addAttribute("project_id", project_id);
         return "tasks";
     }
 

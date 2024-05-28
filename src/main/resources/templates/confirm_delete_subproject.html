@@ -13,8 +13,8 @@
         <input type="hidden" name="projectId" th:value="${projectId}">
         <button type="submit" class="btn delete">Slet</button>
     </form>
-    <form th:action="@{/subprojects}" method="get">
-        <button type="submit" class="btn">Annuller</button>
+    <form th:action="@{/project/{id}(id=${subprojectId})}" method="get">
+        <a th:href="@{/project/{id}(id=${projectId})}" class="btn btn-secondary">Tilbage</a>
     </form>
 </div>
 </body>
