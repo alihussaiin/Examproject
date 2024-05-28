@@ -11,13 +11,13 @@
     <nav class="navbar">
         <ul>
             <li class="tilbage-button">
-                <a href="/projects" class="btn btn-secondary">Tilbage til subprojekter</a>
+                <a th:href="@{/projects}" class="btn btn-secondary">Tilbage til projekter</a>
             </li>
         </ul>
     </nav>
 
     <div class="button-group">
-        <a th:href="@{/create_task/{subProjectId}(subProjectId=${subProjectId})}" class="btn task">Opret opgave</a>
+        <a th:href="@{/create_task/{subprojectId}(subprojectId=${subprojectId})}" class="btn task">Opret opgave</a>
     </div>
 
     <h2>Opgaver</h2>
@@ -44,7 +44,7 @@
                 </form>
             </td>
             <td>
-                <form th:action="@{/confirm_delete_task/{id}/{subProjectId}(id=${task.id}, subProjectId=${subProjectId})}" method="get">
+                <form th:action="@{/confirm_delete_task/{id}/{subprojectId}(id=${task.id}, subprojectId=${subprojectId})}" method="get">
                     <button type="submit" class="btn delete">Slet</button>
                 </form>
             </td>

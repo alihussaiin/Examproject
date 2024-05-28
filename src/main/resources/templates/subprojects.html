@@ -19,7 +19,7 @@
     </nav>
 
     <div class="button-group">
-        <a th:href="@{/create_subproject/{projectId}(projectId=${project.id})}" class="btn subproject">Opret Subprojekt</a>
+        <a th:href="@{/create_subproject/{projectId}(projectId=${session.currentProjectId})}" class="btn subproject">Opret Subprojekt</a>
     </div>
 
     <h2>Subprojekter</h2>

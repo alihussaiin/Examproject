@@ -17,7 +17,7 @@ public class TaskRepository {
     @Value("root")
     private String dbUsername;
 
-    @Value("@H0wtomakemoney")
+    @Value("Kwc52vap2qc#")
     private String dbPassword;
 
     public Task createTask(Task task) {

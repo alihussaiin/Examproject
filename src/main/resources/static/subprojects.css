@@ -114,3 +114,11 @@ table tr:hover {
 .delete:hover {
     background-color: #c82333; /* Mørkere rød ved hover */
 }
+a.btn.subproject {
+    background-color: #28a745; /* Grøn farve */
+}
+
+a.btn.subproject:hover {
+    background-color: #218838; /* Mørkere grøn ved hover */
+}
+

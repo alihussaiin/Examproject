@@ -12,6 +12,7 @@
 
     <form th:action="@{/edit_subproject/{id}(id=${subproject.id})}" method="post" th:object="${subproject}">
         <input type="hidden" name="subprojectId" th:value="${subproject.id}">
+        <input type="hidden" name="projectId" th:value="${subproject.project_Id}">
 
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" th:value="${subproject.name}">
@@ -34,7 +35,7 @@
 
         <div class="button-group">
             <button type="submit" class="btn btn-primary">Gem</button>
-            <a href="/project/" class="btn btn-secondary">Tilbage</a>
+            <a th:href="@{/project/{id}(id=${subproject.getProject_Id()})}" class="btn btn-secondary">Tilbage</a>
         </div>
     </form>
 </div>

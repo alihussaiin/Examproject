@@ -2,13 +2,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: url('https://t3.ftcdn.net/jpg/02/81/97/02/240_F_281970265_KR6Ey4XF3miLYq0QDp3WsH0m35MR2tGC.jpg') no-repeat center center fixed;
+    background: rgba(0, 0, 0, 0.5) url('https://t3.ftcdn.net/jpg/02/81/97/02/240_F_281970265_KR6Ey4XF3miLYq0QDp3WsH0m35MR2tGC.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .container {
     background-color: rgba(255, 255, 255, 0.8);
@@ -58,4 +59,12 @@ h2 {
 
 .btn:hover {
     background-color: #45a049;
+}
+.btn-secondary {
+    background-color: #6c757d; /* Grå farve som sekundær */
+    color: #fff; /* Hvid farve for tekst */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Mørkere grå ved hover */
 }

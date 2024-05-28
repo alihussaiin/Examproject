@@ -75,21 +75,15 @@ public class UserController {
 
     @PostMapping("/login")
     public String loginUser(@ModelAttribute User user, HttpSession session, Model model) {
-        // Kontroller, om brugeren findes i databasen
         User validatedUser = userService.findbyUsername(user.getUsername());
-        //request.setAttribute("loggedInUser", validatedUser, WebRequest.SCOPE_SESSION);
         session.setAttribute("loggedInUser", validatedUser);
         if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
-            // Brugeren er fundet i databasen og adgangskoden matcher
-            // Gem brugeren i sessionen i 1800 sekunder
-           // session.setAttribute("loggedInUser", validatedUser);
-            //System.out.println("session " + session.getAttribute("loggedInUserId"));
-            //session.setMaxInactiveInterval(1800); // 30 minutter = 1800 serkunder
-            return "redirect:/projects"; // Omdiriger brugeren til forsiden
-        } else {
-            // Brugeren blev ikke fundet i databasen eller adgangskoden er forkert
+            session.setMaxInactiveInterval(1800); //slet denne linje hvis koden fejler
+            return "redirect:/projects";
+        }
+        else {
             model.addAttribute("error", "Invalid username or password");
-            return "login"; // Tilbage til loginside med fejlmeddelelse
+            return "login";
         }
     }
 

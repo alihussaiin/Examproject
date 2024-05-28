@@ -35,7 +35,7 @@ label {
 
 button[type="submit"],
 a.btn {
-    background-color: #007bff;
+    background-color: green;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -47,5 +47,18 @@ a.btn {
 
 button[type="submit"]:hover,
 a.btn:hover {
-    background-color: #0056b3;
+    background-color: green;
+}
+
+a.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+a.btn-secondary:hover {
+    background-color: #5a6268;
 }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
         @Value("root")
         private String dbUsername;
 
-        @Value("@H0wtomakemoney")
+        @Value("Kwc52vap2qc#")
         private String dbPassword;
 
         public Project createProject(Project project) {
